@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [SerializeField] private Animator catAnimator;
+
     // Start is called before the first frame update
     void Start()
     {

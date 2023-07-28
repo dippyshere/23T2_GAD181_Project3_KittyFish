@@ -51,6 +51,7 @@ MonoBehaviour:
   walkSpeed: 5
   gravity: -9.81
   jumpHeight: 0.6
+  coyoteTime: 0.2
   controlScheme: KeyboardLeft
 --- !u!143 &6852277210787886147
 CharacterController:
@@ -66,7 +67,7 @@ CharacterController:
   m_Height: 0.85
   m_Radius: 0.35
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.2
   m_SkinWidth: 0.1
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.505, z: 0.05}

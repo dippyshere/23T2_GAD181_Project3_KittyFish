@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float gravity = -9.81f;
-    [SerializeField] private float jumpHeight = 3f;
+    [SerializeField] private float jumpHeight = 1f;
     [SerializeField] private string controlScheme = "KeyboardLeft";
 
     private bool isWalking;
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
         if (isWalking)
         {
             Quaternion targetRotation = Quaternion.LookRotation(new Vector3(horizontalInput, 0f, verticalInput));
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 14f);
         }
         
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * walkSpeed * Time.deltaTime;
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
         if (jumped && isGrounded)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            velocity.y = Mathf.Sqrt(jumpHeight * -4f * gravity);
         }
 
         velocity.y += gravity * Time.deltaTime;

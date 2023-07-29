@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeight = 1f;
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private string controlScheme = "KeyboardLeft";
+    [SerializeField] private Animator[] animators;
 
     private bool isWalking;
     private bool isGrounded;
@@ -19,7 +20,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 movementInput = Vector2.zero;
     private PlayerInput playerInput => GetComponent<PlayerInput>();
     private CharacterController controller => GetComponent<CharacterController>();
-    private Animator animator => GetComponentInChildren<Animator>();
 
     private void Start()
     {
@@ -63,8 +63,14 @@ public class PlayerController : MonoBehaviour
         }
 
         isWalking = (horizontalInput != 0f || verticalInput != 0f);
-        animator.SetBool("isWalking", isWalking);
-        animator.SetFloat("WalkSpeedMultiplier", Mathf.Clamp(Mathf.Sqrt(horizontalInput * horizontalInput + verticalInput * verticalInput) * walkSpeed * 1.3f, 0, walkSpeed * 1.3f));
+        for (int i = 0; i < animators.Length; i++)
+        {
+            animators[i].SetBool("isWalking", isWalking);
+        }
+        for (int i = 0; i < animators.Length; i++)
+        {
+            animators[i].SetFloat("WalkSpeedMultiplier", Mathf.Clamp(Mathf.Sqrt(horizontalInput * horizontalInput + verticalInput * verticalInput) * walkSpeed * 1.3f, 0, walkSpeed * 1.3f));
+        }
 
         if (isWalking)
         {

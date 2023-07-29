@@ -75,9 +75,9 @@ public class CameraController : MonoBehaviour
             Gizmos.DrawLine(railStartPoint, railEndPoint);
         }
 
-        if (player1Transform != null && player2Transform != null)
-        {
-            Gizmos.DrawSphere((player1Transform.position + player2Transform.position) * 0.5f, 0.5f);
-        }
+        //if (player1Transform != null && player2Transform != null)
+        //{
+        //    Gizmos.DrawSphere((player1Transform.position + player2Transform.position) * 0.5f, 0.5f);
+        //}
     }
 }

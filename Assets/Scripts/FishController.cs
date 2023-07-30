@@ -10,6 +10,7 @@ public class FishController : MonoBehaviour
     [SerializeField] private float jumpInterval = 3f;
     [SerializeField] private Mesh[] meshes;
     [SerializeField] private Bounds pondBounds;
+    [SerializeField] private GameObject interactPrompt;
 
     private bool isLured = false;
     private bool isJumping = false;
@@ -40,10 +41,11 @@ public class FishController : MonoBehaviour
         {
             // Move the fish away from the player position
             Vector3 directionFromLure = (transform.position - player.position).normalized;
+            directionFromLure.y = 0f;
             rb.velocity = directionFromLure * swimmingSpeed;
         }
 
-        if (!isJumping)
+        if (!isJumping && !isLured)
         {
             // Swim towards the target position
             Vector3 swimDirection = (targetPosition - transform.position).normalized;
@@ -67,6 +69,10 @@ public class FishController : MonoBehaviour
         {
             isLured = true;
         }
+        if (other.CompareTag("Player"))
+        {
+            interactPrompt.SetActive(true);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -74,6 +80,10 @@ public class FishController : MonoBehaviour
         if (isLured && other.CompareTag("Lure"))
         {
             isLured = false;
+        }
+        if (other.CompareTag("Player"))
+        {
+            interactPrompt.SetActive(false);
         }
     }
 
@@ -113,5 +123,15 @@ public class FishController : MonoBehaviour
         float randomX = Random.Range(pondBounds.min.x, pondBounds.max.x);
         float randomZ = Random.Range(pondBounds.min.z, pondBounds.max.z);
         targetPosition = new Vector3(randomX, transform.position.y, randomZ);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (targetPosition != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawSphere(targetPosition, 0.5f);
+        }
+        Gizmos.DrawWireCube(pondBounds.center, pondBounds.size);
     }
 }

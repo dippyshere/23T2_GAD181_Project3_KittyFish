@@ -8,6 +8,7 @@ public class CameraLock : MonoBehaviour
     [SerializeField] private Vector3 cameraRotation;
     [SerializeField] private Transform player1Transform;
     [SerializeField] private Transform player2Transform;
+    [SerializeField] private int fishTarget = 6;
 
     private CameraController cameraController => Camera.main.GetComponent<CameraController>();
     private BoxCollider boxCollider => GetComponent<BoxCollider>();
@@ -22,6 +23,11 @@ public class CameraLock : MonoBehaviour
             {
                 cameraLocked = false;
                 cameraController.trackCats = true;
+                PlayerController playerController = player1Transform.GetComponent<PlayerController>();
+                if (playerController != null)
+                {
+                    playerController.HideFishUI();
+                }
             }
         }
     }
@@ -36,6 +42,12 @@ public class CameraLock : MonoBehaviour
             cameraController.positionOverride = cameraPosition;
             cameraController.rotationOverride = cameraRotation;
             // Debug.Log("Camera locked");
+            PlayerController playerController = player1Transform.GetComponent<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.fishTarget = fishTarget;
+                playerController.ShowFishUI();
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private string controlScheme = "KeyboardLeft";
     [SerializeField] private Animator[] animators;
+    [SerializeField] private GameObject fishUI;
+    [SerializeField] private TextMeshProUGUI fishCountText;
 
     private bool isWalking;
     private bool isGrounded;
@@ -20,6 +23,11 @@ public class PlayerController : MonoBehaviour
     private Vector2 movementInput = Vector2.zero;
     private PlayerInput playerInput => GetComponent<PlayerInput>();
     private CharacterController controller => GetComponent<CharacterController>();
+    private bool canCatchFish = false;
+    private GameObject fishToCatch;
+    private int fishCount = 0;
+    
+    public int fishTarget = 6;
 
     private void Start()
     {
@@ -41,6 +49,20 @@ public class PlayerController : MonoBehaviour
         else if (context.canceled)
         {
             jumped = false;
+        }
+    }
+
+    public void OnFishInteract(InputAction.CallbackContext context)
+    {
+        if (context.started && canCatchFish)
+        {
+            FishController fishController = fishToCatch.GetComponent<FishController>();
+            if (fishController != null)
+            {
+                fishController.CatchFish();
+                fishCount++;
+                UpdateFishText();
+            }
         }
     }
 
@@ -89,5 +111,48 @@ public class PlayerController : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Fish"))
+        {
+            canCatchFish = true;
+            fishToCatch = other.gameObject;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Fish"))
+        {
+            canCatchFish = false;
+            fishToCatch = null;
+        }
+    }
+
+    private void UpdateFishText()
+    {
+        if (fishCountText != null)
+        {
+            fishCountText.text = fishCount.ToString() + " / " + fishTarget.ToString();
+        }
+    }
+
+    public void ShowFishUI()
+    {
+        if (fishUI != null)
+        {
+            UpdateFishText();
+            fishUI.SetActive(true);
+        }
+    }
+
+    public void HideFishUI()
+    {
+        if (fishUI != null)
+        {
+            fishUI.SetActive(false);
+        }
     }
 }

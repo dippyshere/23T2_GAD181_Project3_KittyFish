@@ -9,6 +9,8 @@ TagManager:
   - Fly
   - Animal
   - Water
+  - Lure
+  - Fish
   layers:
   - Default
   - TransparentFX

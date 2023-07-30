@@ -136,5 +136,7 @@ MonoBehaviour:
   followSpeed: 5
   maxZoomOutDistance: 8
   minZoomOutDistance: 4
-  railStartPoint: {x: 0, y: 3, z: -15}
+  railStartPoint: {x: 0, y: 3, z: -6}
   railEndPoint: {x: 0, y: 3, z: 15}
+  trackCats: 1
+  positionOverride: {fileID: 0}

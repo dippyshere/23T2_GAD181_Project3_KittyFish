@@ -17,7 +17,8 @@ public class CameraController : MonoBehaviour
     private float initialCameraX;
 
     public bool trackCats = true;
-    public Transform positionOverride;
+    public Vector3 positionOverride;
+    public Vector3 rotationOverride;
 
     private void Start()
     {
@@ -40,8 +41,8 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            Camera.main.transform.position = positionOverride.position;
-            Camera.main.transform.rotation = positionOverride.rotation;
+            Camera.main.transform.position = positionOverride;
+            Camera.main.transform.rotation = Quaternion.Euler(rotationOverride);
         }
     }
 
@@ -79,8 +80,8 @@ public class CameraController : MonoBehaviour
         }
         else
         {
-            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, positionOverride.position, Time.deltaTime * followSpeed);
-            Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, positionOverride.rotation, Time.deltaTime * followSpeed);
+            Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, positionOverride, Time.deltaTime * followSpeed);
+            Camera.main.transform.rotation = Quaternion.Lerp(Camera.main.transform.rotation, Quaternion.Euler(rotationOverride), Time.deltaTime * followSpeed);
         }
     }
 

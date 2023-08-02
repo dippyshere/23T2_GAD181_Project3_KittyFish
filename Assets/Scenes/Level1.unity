@@ -5436,10 +5436,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 769919041, guid: d91247886326b1b41bde5c4a933da915, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 282052283947847683, guid: d91247886326b1b41bde5c4a933da915,
         type: 3}
       propertyPath: m_Layer
@@ -6214,6 +6210,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1843505745}
     m_Modifications:
+    - target: {fileID: 1164595629, guid: 94cdfadae0c50374cbc28325b389c1f7, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 5451e71e1a234c4408ca20f43a09230d,
+        type: 2}
     - target: {fileID: 1009459247538858, guid: 94cdfadae0c50374cbc28325b389c1f7, type: 3}
       propertyPath: m_Name
       value: ground_1
@@ -7437,7 +7438,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 15, z: 24}
+  m_Size: {x: 30, y: 15, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &1837361243
 Transform:
@@ -7447,7 +7448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837361241}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7, z: 80.4}
+  m_LocalPosition: {x: 0, y: 7, z: 78.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

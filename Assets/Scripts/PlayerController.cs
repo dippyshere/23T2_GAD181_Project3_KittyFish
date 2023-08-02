@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float walkSpeed = 5f;
-    [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float jumpHeight = 1f;
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private string controlScheme = "KeyboardLeft";
@@ -17,21 +16,21 @@ public class PlayerController : MonoBehaviour
 
     private bool isWalking;
     private bool isGrounded;
+    private bool jump = false;
     private bool jumped = false;
     private float lastTimeGrounded = 0f;
     private Vector3 velocity;
     private Vector2 movementInput = Vector2.zero;
     private PlayerInput playerInput => GetComponent<PlayerInput>();
-    private CharacterController controller => GetComponent<CharacterController>();
+    private Rigidbody rigidBody => GetComponent<Rigidbody>();
     private bool canCatchFish = false;
     private GameObject fishToCatch;
     private int fishCount = 0;
-    
+
     public int fishTarget = 6;
 
     private void Start()
     {
-        //Time.timeScale = 0.2f;
         playerInput.SwitchCurrentControlScheme(controlScheme, Keyboard.current);
     }
 
@@ -44,10 +43,11 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
         {
-            jumped = true;
+            jump = true;
         }
         else if (context.canceled)
         {
+            jump = false;
             jumped = false;
         }
     }
@@ -71,10 +71,11 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = movementInput.x;
         float verticalInput = movementInput.y;
 
-        isGrounded = controller.isGrounded;
+        isGrounded = IsGrounded();
         if (isGrounded)
         {
             lastTimeGrounded = Time.time;
+            jumped = false;
         }
 
         bool canJump = Time.time - lastTimeGrounded <= coyoteTime;
@@ -91,26 +92,30 @@ public class PlayerController : MonoBehaviour
         }
         for (int i = 0; i < animators.Length; i++)
         {
-            animators[i].SetFloat("WalkSpeedMultiplier", Mathf.Clamp(Mathf.Sqrt(horizontalInput * horizontalInput + verticalInput * verticalInput) * walkSpeed * 1.3f, 0, walkSpeed * 1.3f));
+            animators[i].SetFloat("WalkSpeedMultiplier", rigidBody.velocity.magnitude * 1.3f);
         }
 
         if (isWalking)
         {
             Quaternion targetRotation = Quaternion.LookRotation(new Vector3(horizontalInput, 0f, verticalInput));
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 14f);
+            rigidBody.MoveRotation(Quaternion.Slerp(rigidBody.rotation, targetRotation, Time.deltaTime * 14f));
         }
 
-        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * walkSpeed * Time.deltaTime;
-        controller.Move(Vector3.ClampMagnitude(movement, walkSpeed * Time.deltaTime));
+        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * walkSpeed;
+        rigidBody.velocity = new Vector3(movement.x, rigidBody.velocity.y, movement.z);
 
-        if (jumped && canJump)
+        if (jump && canJump && !jumped)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -4f * gravity);
-            jumped = false;
+            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpHeight);
+            jumped = true;
         }
+    }
 
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
+    private bool IsGrounded()
+    {
+        float raycastDistance = 0.3f;
+        RaycastHit hit;
+        return Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance);
     }
 
     private void OnTriggerEnter(Collider other)

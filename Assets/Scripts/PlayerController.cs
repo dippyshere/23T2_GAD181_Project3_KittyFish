@@ -127,8 +127,8 @@ public class PlayerController : MonoBehaviour
             // Set the circular UI element position to the cat's position in screen space
             // Clamp the circular UI element position to stay within the screen bounds
             Vector3 clampedPosition = new Vector3(
-                Mathf.Clamp(catPositionInScreen.x, offscreenUI.GetComponent<RectTransform>().rect.width / 2f, Screen.width - offscreenUI.GetComponent<RectTransform>().rect.width / 2f),
-                Mathf.Clamp(catPositionInScreen.y, offscreenUI.GetComponent<RectTransform>().rect.height / 2f, Screen.height - offscreenUI.GetComponent<RectTransform>().rect.height / 2f),
+                Mathf.Clamp(catPositionInScreen.x, offscreenUI.GetComponent<RectTransform>().rect.width / 2f - 50, Screen.width - offscreenUI.GetComponent<RectTransform>().rect.width / 2f + 50),
+                Mathf.Clamp(catPositionInScreen.y, offscreenUI.GetComponent<RectTransform>().rect.height / 2f - 50, Screen.height - offscreenUI.GetComponent<RectTransform>().rect.height / 2f + 50),
                 catPositionInScreen.z
             );
             offscreenUI.GetComponent<RectTransform>().position = clampedPosition;

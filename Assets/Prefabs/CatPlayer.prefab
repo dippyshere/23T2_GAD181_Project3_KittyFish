@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2611166460854792017}
   - component: {fileID: 4255561688583302445}
   - component: {fileID: 586749125817644180}
+  - component: {fileID: 2205822180822799594}
   m_Layer: 0
   m_Name: OffscreenCamera
   m_TagString: Untagged
@@ -109,6 +110,18 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &2205822180822799594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861519176319641293}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db798f3bc5bc02a4fa2df9d3eef3c280, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7274412773128002445
 GameObject:
   m_ObjectHideFlags: 0

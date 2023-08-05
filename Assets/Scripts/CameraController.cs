@@ -28,7 +28,7 @@ public class CameraController : MonoBehaviour
             // Modified from ChatGPT
             Vector3 midpoint = (player1Transform.position + player2Transform.position) * 0.5f;
             float distanceFromMidpoint = Mathf.Abs(midpoint.x - initialCameraX);
-            float distance = Vector3.Distance(player1Transform.position, player2Transform.position) + distanceFromMidpoint * 1.1f;
+            float distance = Vector3.Distance(player1Transform.position, player2Transform.position) + distanceFromMidpoint;
             float targetSize = distance * 1.1f;
             targetSize = Mathf.Clamp(targetSize, minZoomOutDistance, maxZoomOutDistance);
             Vector3 desiredCameraPosition = midpoint;
@@ -56,7 +56,7 @@ public class CameraController : MonoBehaviour
             float distanceFromMidpoint = Mathf.Abs(midpoint.x - initialCameraX);
 
             // Calculate the distance between the two players
-            float distance = Vector3.Distance(player1Transform.position, player2Transform.position) + distanceFromMidpoint * 1.1f;
+            float distance = Vector3.Distance(player1Transform.position, player2Transform.position) + distanceFromMidpoint;
 
             // Calculate the desired zoom level based on the distance between players
             float targetSize = distance * 1.1f;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,6 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator[] animators;
     [SerializeField] private GameObject fishUI;
     [SerializeField] private TextMeshProUGUI fishCountText;
+    [SerializeField] private GameObject offscreenArrow;
+    [SerializeField] private GameObject offscreenCamera;
+    [SerializeField] private GameObject offscreenUI;
 
     private bool isWalking;
     private bool isGrounded;
@@ -111,6 +115,41 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        // ChatGPT
+        // Check if the cat is offscreen
+        if (!IsCatOnScreen())
+        {
+            // Calculate the position of the cat in screen space
+            Vector3 catPositionInScreen = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+
+            // Set the circular UI element position to the cat's position in screen space
+            // Clamp the circular UI element position to stay within the screen bounds
+            Vector3 clampedPosition = new Vector3(
+                Mathf.Clamp(catPositionInScreen.x, offscreenUI.GetComponent<RectTransform>().rect.width / 2f, Screen.width - offscreenUI.GetComponent<RectTransform>().rect.width / 2f),
+                Mathf.Clamp(catPositionInScreen.y, offscreenUI.GetComponent<RectTransform>().rect.height / 2f, Screen.height - offscreenUI.GetComponent<RectTransform>().rect.height / 2f),
+                catPositionInScreen.z
+            );
+            offscreenUI.GetComponent<RectTransform>().position = clampedPosition;
+
+            // Calculate the angle between the cat and the center of the screen
+            Vector3 screenCenter = new Vector3(Screen.width, Screen.height, 0f) / 2f;
+            float angle = Mathf.Atan2(catPositionInScreen.y - screenCenter.y, catPositionInScreen.x - screenCenter.x) * Mathf.Rad2Deg;
+
+            // Rotate the arrow image to point towards the cat
+            offscreenArrow.GetComponent<RectTransform>().rotation = Quaternion.Euler(0f, 0f, angle);
+
+            offscreenUI.SetActive(true);
+            offscreenCamera.SetActive(true);
+        }
+        else
+        {
+            offscreenCamera.SetActive(false);
+            offscreenUI.SetActive(false);
+        }
+    }
+
     private bool IsGrounded()
     {
         float raycastDistance = 0.3f;
@@ -159,5 +198,14 @@ public class PlayerController : MonoBehaviour
         {
             fishUI.SetActive(false);
         }
+    }
+
+    private bool IsCatOnScreen()
+    {
+        // ChatGPT
+        // Check if the cat's position is within the screen boundaries
+        Vector3 catPositionInScreen = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        return catPositionInScreen.x >= 0 && catPositionInScreen.x <= Screen.width &&
+               catPositionInScreen.y >= 0 && catPositionInScreen.y <= Screen.height;
     }
 }

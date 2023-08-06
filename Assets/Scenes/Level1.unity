@@ -5771,6 +5771,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3441077353522885736, guid: d91247886326b1b41bde5c4a933da915,
         type: 3}
+      propertyPath: fishTag
+      value: Fish2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3441077353522885736, guid: d91247886326b1b41bde5c4a933da915,
+        type: 3}
       propertyPath: offscreenUI
       value: 
       objectReference: {fileID: 1726591974}

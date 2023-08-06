@@ -11,6 +11,7 @@ TagManager:
   - Water
   - Lure
   - Fish
+  - Fish2
   layers:
   - Default
   - TransparentFX

@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeight = 1f;
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private string controlScheme = "KeyboardLeft";
+    [SerializeField] private string fishTag = "Fish";
     [SerializeField] private Animator[] animators;
     [SerializeField] private GameObject fishUI;
     [SerializeField] private TextMeshProUGUI fishCountText;
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput => GetComponent<PlayerInput>();
     private Rigidbody rigidBody => GetComponent<Rigidbody>();
     private bool canCatchFish = false;
-    private GameObject fishToCatch;
+    private static List<GameObject> fishToCatch = new List<GameObject>();
     private int fishCount = 0;
 
     public int fishTarget = 6;
@@ -61,13 +62,18 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started && canCatchFish)
         {
-            FishController fishController = fishToCatch.GetComponent<FishController>();
-            if (fishController != null)
+            for (int i = 0; i < fishToCatch.Count; i++)
             {
-                fishController.CatchFish();
-                fishCount++;
-                UpdateFishText();
+                FishController fishController = fishToCatch[i].GetComponent<FishController>();
+                if (fishController != null)
+                {
+                    fishController.CatchFish();
+                    fishCount++;
+                    UpdateFishText();
+                }
+                fishToCatch.Remove(fishToCatch[i]);
             }
+            fishToCatch.Clear();
         }
     }
 
@@ -159,10 +165,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-    }
-
     private bool IsGrounded()
     {
         float raycastDistance = 0.3f;
@@ -172,19 +174,22 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Fish"))
+        if (other.CompareTag(fishTag))
         {
             canCatchFish = true;
-            fishToCatch = other.gameObject;
+            fishToCatch.Add(other.gameObject);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Fish"))
+        if (other.CompareTag(fishTag))
         {
-            canCatchFish = false;
-            fishToCatch = null;
+            fishToCatch.Remove(other.gameObject);
+            if (fishToCatch.Count == 0)
+            {
+                canCatchFish = false;
+            }
         }
     }
 

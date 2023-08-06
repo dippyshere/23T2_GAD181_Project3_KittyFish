@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class FreezeRotation : MonoBehaviour
 {
-    private Vector3 pivotOffset;
+    [SerializeField] private Vector3 pivotOffset;
     private Quaternion fixedRotation;
 
     private void Start()
     {
         // Calculate the offset from the camera to the pivot point
-        pivotOffset = transform.position + transform.parent.position;
+        //pivotOffset = transform.position + transform.parent.position;
 
-        pivotOffset.x = 0f;
+        //pivotOffset.x = 0f;
 
         // Store the fixed rotation relative to the pivot
         fixedRotation = Quaternion.Euler(26f, 0f, 0f);

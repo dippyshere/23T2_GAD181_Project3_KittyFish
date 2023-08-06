@@ -7213,11 +7213,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1067291087}
     m_Modifications:
+    - target: {fileID: 5590462238131497784, guid: 2dafe8cb05b24c249b0ee0a9230ad7e7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 051a34d78cf6ddc43a6231ec0008857a,
+        type: 3}
     - target: {fileID: 5590462238358830349, guid: 2dafe8cb05b24c249b0ee0a9230ad7e7,
         type: 3}
       propertyPath: m_Texture
       value: 
       objectReference: {fileID: 8400000, guid: 99a6cb27ad721454d836dd91bcc18f49, type: 2}
+    - target: {fileID: 5590462238406161659, guid: 2dafe8cb05b24c249b0ee0a9230ad7e7,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7808447f014b4334db87b52189f9935c,
+        type: 3}
     - target: {fileID: 5590462239271770701, guid: 2dafe8cb05b24c249b0ee0a9230ad7e7,
         type: 3}
       propertyPath: m_Pivot.x

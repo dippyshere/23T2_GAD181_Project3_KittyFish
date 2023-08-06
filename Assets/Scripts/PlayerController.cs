@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -113,10 +114,6 @@ public class PlayerController : MonoBehaviour
             rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpHeight);
             jumped = true;
         }
-    }
-
-    private void FixedUpdate()
-    {
         // ChatGPT
         // Check if the cat is offscreen
         if (!IsCatOnScreen())
@@ -124,14 +121,25 @@ public class PlayerController : MonoBehaviour
             // Calculate the position of the cat in screen space
             Vector3 catPositionInScreen = Camera.main.WorldToScreenPoint(gameObject.transform.position);
 
-            // Set the circular UI element position to the cat's position in screen space
+            float offsetX = 150f * Screen.width / 1280;
+            float offsetY = 150f * Screen.height / 720;
+
             // Clamp the circular UI element position to stay within the screen bounds
             Vector3 clampedPosition = new Vector3(
-                Mathf.Clamp(catPositionInScreen.x, offscreenUI.GetComponent<RectTransform>().rect.width / 2f - 50, Screen.width - offscreenUI.GetComponent<RectTransform>().rect.width / 2f + 50),
-                Mathf.Clamp(catPositionInScreen.y, offscreenUI.GetComponent<RectTransform>().rect.height / 2f - 50, Screen.height - offscreenUI.GetComponent<RectTransform>().rect.height / 2f + 50),
+                Mathf.Clamp(catPositionInScreen.x, offscreenUI.GetComponent<RectTransform>().rect.width / 2f + offsetX, Screen.width - offscreenUI.GetComponent<RectTransform>().rect.width / 2f - offsetX),
+                Mathf.Clamp(catPositionInScreen.y, offscreenUI.GetComponent<RectTransform>().rect.height / 2f + offsetY, Screen.height - offscreenUI.GetComponent<RectTransform>().rect.height / 2f - offsetY),
                 catPositionInScreen.z
             );
-            offscreenUI.GetComponent<RectTransform>().position = clampedPosition;
+            if (offscreenUI.activeSelf)
+            {
+                offscreenUI.GetComponent<RectTransform>().position = Vector3.Lerp(offscreenUI.GetComponent<RectTransform>().position, clampedPosition, Time.deltaTime * 8f);
+            }
+            else
+            {
+                offscreenUI.GetComponent<RectTransform>().position = clampedPosition;
+            }
+
+            //KeepFullyOnScreen(offscreenUI, catPositionInScreen);
 
             // Calculate the angle between the cat and the center of the screen
             Vector3 screenCenter = new Vector3(Screen.width, Screen.height, 0f) / 2f;
@@ -148,6 +156,10 @@ public class PlayerController : MonoBehaviour
             offscreenCamera.SetActive(false);
             offscreenUI.SetActive(false);
         }
+    }
+
+    private void FixedUpdate()
+    {
     }
 
     private bool IsGrounded()
@@ -205,7 +217,29 @@ public class PlayerController : MonoBehaviour
         // ChatGPT
         // Check if the cat's position is within the screen boundaries
         Vector3 catPositionInScreen = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-        return catPositionInScreen.x >= 0 && catPositionInScreen.x <= Screen.width &&
-               catPositionInScreen.y >= 0 && catPositionInScreen.y <= Screen.height;
+        return catPositionInScreen.x >= 0 + 50f * Screen.width / 1280 && catPositionInScreen.x <= Screen.width - 50f * Screen.width / 1280 &&
+               catPositionInScreen.y >= 0 + 50f * Screen.height / 720 && catPositionInScreen.y <= Screen.height -50f * Screen.height / 720;
     }
+
+    //private void KeepFullyOnScreen(GameObject gameObject, Vector3 vector3)
+    //{
+    //    RectTransform canvas = gameObject.transform.parent.GetComponent<RectTransform>();
+    //    RectTransform rect = gameObject.GetComponent<RectTransform>();
+
+    //    Vector2 sizeDelta = rect.sizeDelta * transform.localScale;
+    //    Vector2 anchorOffset = canvas.sizeDelta * (rect.anchorMin - Vector2.one / 2);
+
+    //    Vector2 maxPivotOffset = sizeDelta * (rect.pivot - (Vector2.one / 2) * 2);
+    //    Vector2 minPivotOffset = sizeDelta * ((Vector2.one / 2) * 2 - rect.pivot);
+
+    //    float minX = (canvas.sizeDelta.x) * -0.5f - anchorOffset.x - minPivotOffset.x + sizeDelta.x;
+    //    float maxX = (canvas.sizeDelta.x) * 0.5f - anchorOffset.x + maxPivotOffset.x;
+    //    float minY = (canvas.sizeDelta.y) * -0.5f - anchorOffset.y - minPivotOffset.y + sizeDelta.y;
+    //    float maxY = (canvas.sizeDelta.y) * 0.5f - anchorOffset.y + maxPivotOffset.y;
+
+    //    vector3.x = Mathf.Clamp(vector3.x, minX, maxX);
+    //    vector3.y = Mathf.Clamp(vector3.y, minY, maxY);
+
+    //    rect.anchoredPosition = new Vector2(vector3.x, vector3.y);
+    //}
 }

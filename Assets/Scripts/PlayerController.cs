@@ -107,11 +107,12 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * walkSpeed;
-        rigidBody.velocity = new Vector3(movement.x, rigidBody.velocity.y, movement.z);
+        rigidBody.velocity = Vector3.Lerp(rigidBody.velocity, new Vector3(movement.x, rigidBody.velocity.y, movement.z), Time.deltaTime * 17f);
 
         if (jump && canJump && !jumped)
         {
-            rigidBody.velocity = new Vector2(rigidBody.velocity.x, jumpHeight);
+            //rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpHeight, rigidBody.velocity.z);
+            rigidBody.velocity = Vector3.Lerp(rigidBody.velocity, new Vector3(rigidBody.velocity.x, jumpHeight, rigidBody.velocity.z), Time.deltaTime * 17f);
             jumped = true;
         }
         // ChatGPT

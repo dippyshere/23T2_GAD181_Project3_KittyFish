@@ -127,7 +127,15 @@ public class PlayerController : MonoBehaviour
         if (!IsCatOnScreen())
         {
             // Calculate the position of the cat in screen space
-            Vector3 catPositionInScreen = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+            Vector3 catPositionInWorld = gameObject.transform.position;
+
+            Vector3 catPositionInScreen = Camera.main.WorldToScreenPoint(catPositionInWorld);
+
+            if (Vector3.Dot(catPositionInWorld - Camera.main.transform.position, Camera.main.transform.forward) < 0)
+            {
+                catPositionInWorld.z = Camera.main.transform.position.z + 0.01f;
+                catPositionInScreen = Camera.main.WorldToScreenPoint(catPositionInWorld);
+            }
 
             float offsetX = 150f * Screen.width / 1280;
             float offsetY = 150f * Screen.height / 720;

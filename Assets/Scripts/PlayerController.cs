@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 movementInput = Vector2.zero;
     private PlayerInput playerInput => GetComponent<PlayerInput>();
     private Rigidbody rigidBody => GetComponent<Rigidbody>();
+    private CapsuleCollider capsuleCollider => GetComponent<CapsuleCollider>();
     private bool canCatchFish = false;
     private static List<GameObject> fishToCatch = new List<GameObject>();
     private int fishCount = 0;
@@ -168,9 +169,38 @@ public class PlayerController : MonoBehaviour
     private bool IsGrounded()
     {
         float raycastDistance = 0.3f;
-        RaycastHit hit;
-        return Physics.Raycast(transform.position, Vector3.down, out hit, raycastDistance);
+        Vector3 raycastOrigin = transform.position + Vector3.up * 0.1f;
+
+        // Perform raycast checks from different points
+        Vector3[] raycastOrigins = new Vector3[]
+        {
+        raycastOrigin,                                          // Middle
+        raycastOrigin + Vector3.forward * capsuleCollider.radius,    // Front
+        raycastOrigin - Vector3.forward * capsuleCollider.radius,    // Back
+        raycastOrigin + Vector3.left * capsuleCollider.radius,       // Left
+        raycastOrigin + Vector3.right * capsuleCollider.radius,      // Right
+        raycastOrigin + Vector3.forward * capsuleCollider.radius + Vector3.left * capsuleCollider.radius,  // Front-Left
+        raycastOrigin + Vector3.forward * capsuleCollider.radius + Vector3.right * capsuleCollider.radius, // Front-Right
+        raycastOrigin - Vector3.forward * capsuleCollider.radius + Vector3.left * capsuleCollider.radius,  // Back-Left
+        raycastOrigin - Vector3.forward * capsuleCollider.radius + Vector3.right * capsuleCollider.radius, // Back-Right
+        };
+
+        foreach (Vector3 origin in raycastOrigins)
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(origin, Vector3.down, out hit, raycastDistance))
+            {
+                // Adjust this check to include a small tolerance to avoid false negatives
+                if (hit.distance <= raycastDistance + 0.05f)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -226,6 +256,35 @@ public class PlayerController : MonoBehaviour
         return catPositionInScreen.x >= 0 + 50f * Screen.width / 1280 && catPositionInScreen.x <= Screen.width - 50f * Screen.width / 1280 &&
                catPositionInScreen.y >= 0 + 50f * Screen.height / 720 && catPositionInScreen.y <= Screen.height -50f * Screen.height / 720;
     }
+
+    private void OnDrawGizmos()
+    {
+        float raycastDistance = 0.3f;
+        Vector3 raycastOrigin = transform.position + Vector3.up * 0.1f;
+
+        // Perform raycast checks from different points
+        Vector3[] raycastOrigins = new Vector3[]
+        {
+        raycastOrigin,                                          // Middle
+        raycastOrigin + Vector3.forward * capsuleCollider.radius,    // Front
+        raycastOrigin - Vector3.forward * capsuleCollider.radius,    // Back
+        raycastOrigin + Vector3.left * capsuleCollider.radius,       // Left
+        raycastOrigin + Vector3.right * capsuleCollider.radius,      // Right
+        raycastOrigin + Vector3.forward * capsuleCollider.radius + Vector3.left * capsuleCollider.radius,  // Front-Left
+        raycastOrigin + Vector3.forward * capsuleCollider.radius + Vector3.right * capsuleCollider.radius, // Front-Right
+        raycastOrigin - Vector3.forward * capsuleCollider.radius + Vector3.left * capsuleCollider.radius,  // Back-Left
+        raycastOrigin - Vector3.forward * capsuleCollider.radius + Vector3.right * capsuleCollider.radius, // Back-Right
+        };
+
+        Gizmos.color = Color.green;
+
+        foreach (Vector3 origin in raycastOrigins)
+        {
+            Gizmos.DrawLine(origin, origin + Vector3.down * raycastDistance);
+        }
+    }
+
+
 
     //private void KeepFullyOnScreen(GameObject gameObject, Vector3 vector3)
     //{

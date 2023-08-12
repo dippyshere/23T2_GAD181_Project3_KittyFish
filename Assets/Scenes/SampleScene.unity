@@ -781,7 +781,7 @@ PrefabInstance:
         type: 3}
       propertyPath: offscreenArrow
       value: 
-      objectReference: {fileID: 534603925}
+      objectReference: {fileID: 1936016190}
     - target: {fileID: 3444028806453688209, guid: d91247886326b1b41bde5c4a933da915,
         type: 3}
       propertyPath: m_DefaultControlScheme
@@ -1548,7 +1548,7 @@ PrefabInstance:
         type: 3}
       propertyPath: offscreenArrow
       value: 
-      objectReference: {fileID: 1936016190}
+      objectReference: {fileID: 534603925}
     - target: {fileID: 7274412773128002434, guid: d91247886326b1b41bde5c4a933da915,
         type: 3}
       propertyPath: m_RootOrder

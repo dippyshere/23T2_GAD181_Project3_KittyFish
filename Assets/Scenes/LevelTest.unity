@@ -1750,6 +1750,11 @@ PrefabInstance:
       propertyPath: puzzleObject
       value: 
       objectReference: {fileID: 648594065}
+    - target: {fileID: 912437864336798170, guid: fe2bdf9192a3372449fbb9d6d8939d22,
+        type: 3}
+      propertyPath: requiresContinuousActivation
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 912437864336798171, guid: fe2bdf9192a3372449fbb9d6d8939d22,
         type: 3}
       propertyPath: m_Name
@@ -2022,6 +2027,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5782741023666744843, guid: b58bbf50a568ed643b23afee440f8393,
+        type: 3}
+      propertyPath: openHeight
+      value: -2.85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b58bbf50a568ed643b23afee440f8393, type: 3}

@@ -58,19 +58,35 @@ public class DoorController : MonoBehaviour
 
     IEnumerator OpenDoor()
     {
-        while (transform.GetChild(0).transform.localPosition.y < openHeight)
+        if (openHeight >= 0)
         {
-            if (!isOpen)
+            while (transform.GetChild(0).transform.localPosition.y < openHeight)
             {
-                yield break;
+                if (!isOpen)
+                {
+                    yield break;
+                }
+                transform.GetChild(0).transform.localPosition = Vector3.Lerp(transform.GetChild(0).transform.localPosition, new Vector3(transform.GetChild(0).transform.localPosition.x, openHeight, transform.GetChild(0).transform.localPosition.z), Time.deltaTime * moveSpeed);
+                yield return null;
             }
-            transform.GetChild(0).transform.localPosition = Vector3.Lerp(transform.GetChild(0).transform.localPosition, new Vector3(transform.GetChild(0).transform.localPosition.x, openHeight, transform.GetChild(0).transform.localPosition.z), Time.deltaTime * moveSpeed);
-            yield return null;
+        }
+        else
+        {
+            while (transform.GetChild(0).transform.localPosition.y > openHeight)
+            {
+                if (!isOpen)
+                {
+                    yield break;
+                }
+                transform.GetChild(0).transform.localPosition = Vector3.Lerp(transform.GetChild(0).transform.localPosition, new Vector3(transform.GetChild(0).transform.localPosition.x, openHeight, transform.GetChild(0).transform.localPosition.z), Time.deltaTime * moveSpeed);
+                yield return null;
+            }
         }
     }
 
     IEnumerator CloseDoor()
     {
+        if (openHeight >= 0)
         while (transform.GetChild(0).transform.localPosition.y > 0)
         {
             if (isOpen)
@@ -79,6 +95,18 @@ public class DoorController : MonoBehaviour
             }
             transform.GetChild(0).transform.localPosition = Vector3.Lerp(transform.GetChild(0).transform.localPosition, new Vector3(transform.GetChild(0).transform.localPosition.x, 0, transform.GetChild(0).transform.localPosition.z), Time.deltaTime * moveSpeed);
             yield return null;
+        }
+        else
+        {
+            while (transform.GetChild(0).transform.localPosition.y < 0)
+            {
+                if (isOpen)
+                {
+                    yield break;
+                }
+                transform.GetChild(0).transform.localPosition = Vector3.Lerp(transform.GetChild(0).transform.localPosition, new Vector3(transform.GetChild(0).transform.localPosition.x, 0, transform.GetChild(0).transform.localPosition.z), Time.deltaTime * moveSpeed);
+                yield return null;
+            }
         }
     }
 }

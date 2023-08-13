@@ -21,7 +21,7 @@ public class PressurePlate : MonoBehaviour
         isCatOnPlate = true;
     }
 
-    private void OnTriggerExit(Collider other)
+    public void OnTriggerExit(Collider other)
     {
         isCatOnPlate = false;
         if (requiresContinuousActivation && isActivated && !IsAnyCatOnPlate())
@@ -51,7 +51,7 @@ public class PressurePlate : MonoBehaviour
             SendMessageToPuzzleObject(activationFunctionName);
         }
         StartCoroutine(Sink());
-        Debug.Log("Activate");
+        //Debug.Log("Activate");
     }
 
     private void DeactivatePlate()
@@ -62,7 +62,7 @@ public class PressurePlate : MonoBehaviour
             SendMessageToPuzzleObject("PuzzleDeactivate");
         }
         StartCoroutine(Rise());
-        Debug.Log("Deactivate");
+        //Debug.Log("Deactivate");
     }
 
     private void SendMessageToPuzzleObject(string functionName)
@@ -74,6 +74,10 @@ public class PressurePlate : MonoBehaviour
     {
         while (transform.GetChild(0).transform.localPosition.y > -sinkAmount)
         {
+            if (!isActivated)
+            {
+                yield break;
+            }
             transform.GetChild(0).transform.localPosition = Vector3.Lerp(transform.GetChild(0).transform.localPosition, Vector3.down * sinkAmount, Time.deltaTime * 1f);
             yield return null;
         }
@@ -83,7 +87,11 @@ public class PressurePlate : MonoBehaviour
     {
         while (transform.GetChild(0).transform.localPosition.y < 0)
         {
-            transform.GetChild(0).transform.localPosition = Vector3.Lerp(transform.GetChild(0).transform.localPosition, new Vector3(0, sinkAmount, 0), Time.deltaTime * 1f);
+            if (isActivated)
+            {
+                yield break;
+            }
+            transform.GetChild(0).transform.localPosition = Vector3.Lerp(transform.GetChild(0).transform.localPosition, new Vector3(transform.GetChild(0).transform.localPosition.x, 0, transform.GetChild(0).transform.localPosition.z), Time.deltaTime * 1f);
             yield return null;
         }
     }

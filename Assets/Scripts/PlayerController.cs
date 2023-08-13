@@ -33,13 +33,15 @@ public class PlayerController : MonoBehaviour
     private bool canCatchFish = false;
     private static List<GameObject> fishToCatch = new List<GameObject>();
     private int fishCount = 0;
-    private PressurePlate currentPressurePlate;
+    private PressurePlate currentPressurePlate = null;
 
     public int fishTarget = 6;
 
     private void Start()
     {
         playerInput.SwitchCurrentControlScheme(controlScheme, Keyboard.current);
+        currentPressurePlate = null;
+        StartCoroutine(ResetPressurePlate());
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -222,6 +224,14 @@ public class PlayerController : MonoBehaviour
         {
             currentPressurePlate = other.GetComponent<PressurePlate>();
         }
+        //else if (other.CompareTag("Door"))
+        //{
+        //    if (other.GetComponent<DoorController>() != null)
+        //    {
+        //        other.GetComponent<DoorController>().Interrupt();
+        //    }
+        //    Debug.Log("Door");
+        //}
     }
 
     private void OnTriggerExit(Collider other)
@@ -236,7 +246,11 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.CompareTag("PressurePlate") && currentPressurePlate == other.GetComponent<PressurePlate>())
         {
-            currentPressurePlate = null;
+            if (other.GetComponent<PressurePlate>() != null)
+            {
+                currentPressurePlate = null;
+                other.GetComponent<PressurePlate>().OnTriggerExit(capsuleCollider);
+            }
         }
     }
 
@@ -304,6 +318,12 @@ public class PlayerController : MonoBehaviour
     public bool IsOnPressurePlate(PressurePlate pressurePlate)
     {
         return currentPressurePlate == pressurePlate;
+    }
+
+    IEnumerator ResetPressurePlate()
+    {
+        yield return new WaitForSeconds(0.3f);
+        currentPressurePlate = null;
     }
 
     //private void KeepFullyOnScreen(GameObject gameObject, Vector3 vector3)

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private UINotificationHandler uiNotificationHandler;
     public int orangeFish = 0;
     public int purpleFish = 0;
+
+    public int checkpoint = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -17,5 +20,22 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Checkpoint()
+    {
+        if (checkpoint < 1)
+        {
+            checkpoint++;
+            StartCoroutine(uiNotificationHandler.ShowNotification());
+        }
+    }
+
+    public void CheckFish()
+    {
+        if (purpleFish >= 2 && orangeFish >= 2)
+        {
+            Checkpoint();
+        }
     }
 }

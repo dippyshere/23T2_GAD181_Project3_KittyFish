@@ -45,6 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf61a313fd3e7a4f8f7a83e1898314e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiNotificationHandler: {fileID: 0}
+  orangeFish: 0
+  purpleFish: 0
+  checkpoint: 0
 --- !u!114 &965225647747985007
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
             }
             fishToCatch.Clear();
         }
-        Debug.Log("Fish Interact from " + controlScheme);
+        // Debug.Log("Fish Interact from " + controlScheme);
     }
 
     private void Update()
@@ -275,6 +275,7 @@ public class PlayerController : MonoBehaviour
         {
             gameManager.purpleFish = fishCount;
         }
+        gameManager.CheckFish();
     }
 
     public void ShowFishUI()

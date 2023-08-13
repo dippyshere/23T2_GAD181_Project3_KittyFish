@@ -14,6 +14,7 @@ public class CameraLock : MonoBehaviour
     [SerializeField] private bool purpleFish = false;
 
     private CameraController cameraController => Camera.main.GetComponent<CameraController>();
+    private GameManager gameManager => FindObjectOfType<GameManager>();
     private BoxCollider boxCollider => GetComponent<BoxCollider>();
     private bool cameraLocked = false;
 

@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private bool canCatchFish = false;
     private static List<GameObject> fishToCatch = new List<GameObject>();
     private int fishCount = 0;
+    private PressurePlate currentPressurePlate;
 
     public int fishTarget = 6;
 
@@ -217,6 +218,10 @@ public class PlayerController : MonoBehaviour
             canCatchFish = true;
             fishToCatch.Add(other.gameObject);
         }
+        else if (other.CompareTag("PressurePlate"))
+        {
+            currentPressurePlate = other.GetComponent<PressurePlate>();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -228,6 +233,10 @@ public class PlayerController : MonoBehaviour
             {
                 canCatchFish = false;
             }
+        }
+        else if (other.CompareTag("PressurePlate") && currentPressurePlate == other.GetComponent<PressurePlate>())
+        {
+            currentPressurePlate = null;
         }
     }
 
@@ -292,7 +301,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
+    public bool IsOnPressurePlate(PressurePlate pressurePlate)
+    {
+        return currentPressurePlate == pressurePlate;
+    }
 
     //private void KeepFullyOnScreen(GameObject gameObject, Vector3 vector3)
     //{

@@ -12,6 +12,7 @@ TagManager:
   - Lure
   - Fish
   - Fish2
+  - PressurePlate
   layers:
   - Default
   - TransparentFX

@@ -7,16 +7,21 @@ public class FishController : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private float swimmingSpeed = 2f;
-    [SerializeField] private float jumpInterval = 3f;
+    // [SerializeField] private float jumpInterval = 3f;
     [SerializeField] private Mesh[] meshes;
     [SerializeField] private Bounds pondBounds;
-    [SerializeField] private GameObject interactPrompt;
+    [SerializeField] private GameObject p1InteractPrompt;
+    [SerializeField] private GameObject p2InteractPrompt;
+    [SerializeField] private bool orangeFish = true;
 
     private bool isLured = false;
     private bool isJumping = false;
     private float jumpForce = 5f;
     private Rigidbody rb;
     private Vector3 targetPosition;
+    private Quaternion targetRotation;
+    private Vector3 velocity;
+    private string lureTag = "Lure";
 
     private void Start()
     {
@@ -33,6 +38,11 @@ public class FishController : MonoBehaviour
         }
 
         SetRandomSwimTarget();
+
+        if (!orangeFish)
+        {
+            lureTag = "Lure2";
+        }
     }
 
     private void Update()
@@ -42,48 +52,101 @@ public class FishController : MonoBehaviour
             // Move the fish away from the player position
             Vector3 directionFromLure = (transform.position - player.position).normalized;
             directionFromLure.y = 0f;
-            rb.velocity = directionFromLure * swimmingSpeed;
+            velocity = directionFromLure * swimmingSpeed;
+
+            targetRotation = Quaternion.LookRotation(directionFromLure);
+            targetRotation *= Quaternion.Euler(0f, 90f, 0f);
+
+            rb.velocity = Vector3.Lerp(rb.velocity, velocity, Time.deltaTime * 4f);
         }
 
         if (!isJumping && !isLured)
         {
             // Swim towards the target position
             Vector3 swimDirection = (targetPosition - transform.position).normalized;
-            rb.velocity = swimDirection * swimmingSpeed;
+            velocity = swimDirection * swimmingSpeed;
+
+            targetRotation = Quaternion.LookRotation(swimDirection);
+            targetRotation *= Quaternion.Euler(0f, 90f, 0f);
 
             // Check if the fish has reached the target position
-            if (Vector3.Distance(transform.position, targetPosition) < 0.2f)
+            if (Vector3.Distance(transform.position, targetPosition) <= 1f)
             {
                 // Set a new random target position for swimming
                 SetRandomSwimTarget();
 
                 // Start the jumping timer
-                Invoke("Jump", jumpInterval);
+                //Invoke("Jump", jumpInterval);
             }
+
+            rb.velocity = Vector3.Lerp(rb.velocity, velocity, Time.deltaTime);
         }
+
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!isLured && other.CompareTag("Lure"))
+        if (!isLured && other.CompareTag(lureTag))
         {
             isLured = true;
         }
         if (other.CompareTag("Player"))
         {
-            interactPrompt.SetActive(true);
+            PlayerController playerController = other.GetComponent<PlayerController>();
+            if (playerController != null)
+            {
+                if (playerController.fishTag == gameObject.tag)
+                {
+                    if (orangeFish)
+                    {
+                        p1InteractPrompt.SetActive(true);
+                    }
+                    else
+                    {
+                        p2InteractPrompt.SetActive(true);
+                    }
+                    playerController.canCatchFish = true;
+                    playerController.fishToCatch.Add(this);
+                }
+            }
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (isLured && other.CompareTag("Lure"))
+        if (isLured && other.CompareTag(lureTag))
         {
             isLured = false;
         }
         if (other.CompareTag("Player"))
         {
-            interactPrompt.SetActive(false);
+            PlayerController playerController = other.GetComponent<PlayerController>();
+            if (playerController != null)
+            {
+                if (playerController.fishTag == gameObject.tag)
+                {
+                    if (orangeFish)
+                    {
+                        p1InteractPrompt.SetActive(false);
+                    }
+                    else
+                    {
+                        p2InteractPrompt.SetActive(false);
+                    }
+                    for (int i = 0; i < playerController.fishToCatch.Count; i++)
+                    {
+                        if (playerController.fishToCatch[i] == this)
+                        {
+                            playerController.fishToCatch.RemoveAt(i);
+                        }
+                    }
+                    if (playerController.fishToCatch.Count == 0)
+                    {
+                        playerController.canCatchFish = false;
+                    }
+                }
+            }
         }
     }
 

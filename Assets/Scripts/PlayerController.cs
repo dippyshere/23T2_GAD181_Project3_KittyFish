@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeight = 1f;
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private string controlScheme = "KeyboardLeft";
-    [SerializeField] private string fishTag = "Fish";
+    public string fishTag = "Fish";
     [SerializeField] private Animator[] animators;
     [SerializeField] private GameObject fishUI;
     [SerializeField] private TextMeshProUGUI fishCountText;
@@ -30,8 +30,9 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput => GetComponent<PlayerInput>();
     private Rigidbody rigidBody => GetComponent<Rigidbody>();
     private CapsuleCollider capsuleCollider => GetComponent<CapsuleCollider>();
-    private bool canCatchFish = false;
-    private static List<GameObject> fishToCatch = new List<GameObject>();
+    private GameManager gameManager => FindObjectOfType<GameManager>();
+    public bool canCatchFish = false;
+    public List<FishController> fishToCatch = new List<FishController>();
     private int fishCount = 0;
     private PressurePlate currentPressurePlate = null;
 
@@ -68,17 +69,14 @@ public class PlayerController : MonoBehaviour
         {
             for (int i = 0; i < fishToCatch.Count; i++)
             {
-                FishController fishController = fishToCatch[i].GetComponent<FishController>();
-                if (fishController != null)
-                {
-                    fishController.CatchFish();
-                    fishCount++;
-                    UpdateFishText();
-                }
+                fishToCatch[i].CatchFish();
+                fishCount++;
+                UpdateFishText();
                 fishToCatch.Remove(fishToCatch[i]);
             }
             fishToCatch.Clear();
         }
+        Debug.Log("Fish Interact from " + controlScheme);
     }
 
     private void Update()
@@ -215,12 +213,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(fishTag))
-        {
-            canCatchFish = true;
-            fishToCatch.Add(other.gameObject);
-        }
-        else if (other.CompareTag("PressurePlate"))
+        //if (other.CompareTag(fishTag))
+        //{
+        //    if (other.GetComponent<FishController>() != null)
+        //    {
+        //        canCatchFish = true;
+        //        fishToCatch.Add(other.GetComponent<FishController>());
+        //    }
+        //}
+        if (other.CompareTag("PressurePlate"))
         {
             currentPressurePlate = other.GetComponent<PressurePlate>();
         }
@@ -236,15 +237,21 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag(fishTag))
-        {
-            fishToCatch.Remove(other.gameObject);
-            if (fishToCatch.Count == 0)
-            {
-                canCatchFish = false;
-            }
-        }
-        else if (other.CompareTag("PressurePlate") && currentPressurePlate == other.GetComponent<PressurePlate>())
+        //if (other.CompareTag(fishTag))
+        //{
+        //    for (int i = 0; i < fishToCatch.Count; i++)
+        //    {
+        //        if (fishToCatch[i] == other.GetComponent<FishController>())
+        //        {
+        //            fishToCatch.RemoveAt(i);
+        //        }
+        //    }
+        //    if (fishToCatch.Count == 0)
+        //    {
+        //        canCatchFish = false;
+        //    }
+        //}
+        if (other.CompareTag("PressurePlate") && currentPressurePlate == other.GetComponent<PressurePlate>())
         {
             if (other.GetComponent<PressurePlate>() != null)
             {
@@ -259,6 +266,14 @@ public class PlayerController : MonoBehaviour
         if (fishCountText != null)
         {
             fishCountText.text = fishCount.ToString() + " / " + fishTarget.ToString();
+        }
+        if (controlScheme == "KeyboardLeft")
+        {
+            gameManager.orangeFish = fishCount;
+        }
+        else if (controlScheme == "KeyboardRight")
+        {
+            gameManager.purpleFish = fishCount;
         }
     }
 

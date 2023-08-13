@@ -176,6 +176,17 @@
                     "action": "CatchFish",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "184dc9a8-cabc-4b87-8799-a07c65e088d4",
+                    "path": "<Keyboard>/numpadPeriod",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardRight",
+                    "action": "CatchFish",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

@@ -13,6 +13,7 @@ TagManager:
   - Fish
   - Fish2
   - PressurePlate
+  - Door
   layers:
   - Default
   - TransparentFX

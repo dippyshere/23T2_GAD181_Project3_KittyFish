@@ -46,7 +46,7 @@ namespace UnityStandardAssets.ImageEffects
             if (extraBlur)
             {
                 RenderTexture blurbuffer = RenderTexture.GetTemporary(source.width/4, source.height/4, 0);
-                accumTexture.MarkRestoreExpected();
+                //accumTexture.MarkRestoreExpected();
                 Graphics.Blit(accumTexture, blurbuffer);
                 Graphics.Blit(blurbuffer,accumTexture);
                 RenderTexture.ReleaseTemporary(blurbuffer);
@@ -61,7 +61,7 @@ namespace UnityStandardAssets.ImageEffects
 
             // We are accumulating motion over frames without clear/discard
             // by design, so silence any performance warnings from Unity
-            accumTexture.MarkRestoreExpected();
+            //accumTexture.MarkRestoreExpected();
 
             // Render the image using the motion blur shader
             Graphics.Blit (source, accumTexture, material);

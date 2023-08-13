@@ -83,6 +83,10 @@ public class FishController : MonoBehaviour
         }
 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime);
+        p1InteractPrompt.transform.LookAt(Camera.main.transform);
+        p1InteractPrompt.transform.rotation = Quaternion.Euler(0f, p1InteractPrompt.transform.rotation.eulerAngles.y + 180f, 0f);
+        p2InteractPrompt.transform.LookAt(Camera.main.transform);
+        p2InteractPrompt.transform.rotation = Quaternion.Euler(0f, p2InteractPrompt.transform.rotation.eulerAngles.y + 180f, 0f);
     }
 
     private void OnTriggerEnter(Collider other)

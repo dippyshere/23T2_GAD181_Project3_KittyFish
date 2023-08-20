@@ -22,10 +22,10 @@ TagManager:
   - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player1
+  - Player2
+  - Player1Only
+  - Player2Only
   - 
   - 
   - 

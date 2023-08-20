@@ -12,6 +12,8 @@ public class PressurePlate : MonoBehaviour
     private bool isActivated = false;
     private bool isCatOnPlate = false;
 
+    public bool active = true;
+
     private void OnTriggerEnter(Collider other)
     {
         if (!isActivated && !isCatOnPlate && other.CompareTag("Player"))
@@ -45,6 +47,10 @@ public class PressurePlate : MonoBehaviour
 
     private void ActivatePlate()
     {
+        if (!active)
+        {
+            return;
+        }
         isActivated = true;
         if (puzzleObject != null)
         {
@@ -56,6 +62,10 @@ public class PressurePlate : MonoBehaviour
 
     private void DeactivatePlate()
     {
+        if (!active)
+        {
+            return;
+        }
         isActivated = false;
         if (puzzleObject != null)
         {

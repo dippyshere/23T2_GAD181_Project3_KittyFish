@@ -82,7 +82,7 @@ PrefabInstance:
     - target: {fileID: 996853808676092838, guid: 2f40b13f1fc4a044eb748e502098d220,
         type: 3}
       propertyPath: m_Name
-      value: FishOrange 1
+      value: FishOrange
       objectReference: {fileID: 0}
     - target: {fileID: 996853808676092838, guid: 2f40b13f1fc4a044eb748e502098d220,
         type: 3}

@@ -1603,7 +1603,10 @@ MonoBehaviour:
   cameraRotation: {x: 50, y: 0, z: 0}
   player1Transform: {fileID: 1155971922}
   player2Transform: {fileID: 1077350985}
-  fishTarget: 6
+  orangeFishTarget: 6
+  purpleFishTarget: 6
+  orangeFish: 0
+  purpleFish: 0
 --- !u!1001 &139115496552979287
 PrefabInstance:
   m_ObjectHideFlags: 0

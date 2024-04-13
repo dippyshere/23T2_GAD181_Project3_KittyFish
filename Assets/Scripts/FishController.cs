@@ -57,7 +57,7 @@ public class FishController : MonoBehaviour
             targetRotation = Quaternion.LookRotation(directionFromLure);
             targetRotation *= Quaternion.Euler(0f, 90f, 0f);
 
-            rb.velocity = Vector3.Lerp(rb.velocity, velocity, Time.deltaTime * 4f);
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, velocity, Time.deltaTime * 4f);
         }
 
         if (!isJumping && !isLured)
@@ -79,7 +79,7 @@ public class FishController : MonoBehaviour
                 //Invoke("Jump", jumpInterval);
             }
 
-            rb.velocity = Vector3.Lerp(rb.velocity, velocity, Time.deltaTime);
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, velocity, Time.deltaTime);
         }
 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime);
@@ -169,7 +169,7 @@ public class FishController : MonoBehaviour
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 
         // Reset the swimming velocity so it doesn't affect the jump
-        rb.velocity = Vector3.zero;
+        rb.linearVelocity = Vector3.zero;
 
         // Set the jumping flag to true
         isJumping = true;

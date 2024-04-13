@@ -34,7 +34,7 @@ public class PressurePlate : MonoBehaviour
 
     private bool IsAnyCatOnPlate()
     {
-        PlayerController[] cats = FindObjectsOfType<PlayerController>();
+        PlayerController[] cats = FindObjectsByType<PlayerController>(FindObjectsSortMode.None);
         foreach (PlayerController cat in cats)
         {
             if (cat.IsOnPressurePlate(this))

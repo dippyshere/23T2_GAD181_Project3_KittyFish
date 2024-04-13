@@ -21,7 +21,7 @@ public class Buoyancy : MonoBehaviour
         if (other.CompareTag("Water"))
         {
             isFloating = true;
-            rb.drag = waterDrag;
+            rb.linearDamping = waterDrag;
         }
     }
 
@@ -30,7 +30,7 @@ public class Buoyancy : MonoBehaviour
         if (other.CompareTag("Water"))
         {
             isFloating = false;
-            rb.drag = 0f;
+            rb.linearDamping = 0f;
         }
     }
 

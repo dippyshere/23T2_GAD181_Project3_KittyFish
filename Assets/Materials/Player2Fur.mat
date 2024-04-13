@@ -22,11 +22,13 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Player2Fur
   m_Shader: {fileID: 4800000, guid: 295ee5a5dfb00aa48a251f09d106dcc0, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _ALPHATEST_ON
   - _FUR_RIM_LIGHTING
   - _FUR_SPECULAR
   m_InvalidKeywords:
-  - _ALPHATEST_ON
   - _CONSIDERSHADOW_ON
   - _GEOM_INSTANCING
   - _MATERIAL_TYPE_LIT
@@ -37,6 +39,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -163,7 +166,7 @@ Material:
     - _Material_Type: 0
     - _MedulaAbsorb: 0.9
     - _MedulaScatter: 0.5
-    - _Metallic: 0
+    - _Metallic: 0.31
     - _NoFurShadow: 1
     - _NormalScale: 0.3
     - _Occlusion: 0
@@ -178,7 +181,7 @@ Material:
     - _ShadowExtraBias: 0
     - _ShellAmount: 52
     - _ShellStep: 0.001
-    - _Smoothness: 0.25
+    - _Smoothness: 0.227
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -200,3 +203,4 @@ Material:
     - _WindFreq: {r: 0.5, g: 0.7, b: 0.4, a: 0}
     - _WindMove: {r: 0.2, g: 0.2, b: 0.2, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

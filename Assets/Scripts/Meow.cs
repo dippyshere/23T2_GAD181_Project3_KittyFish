@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Meow : MonoBehaviour
 {
@@ -8,20 +9,17 @@ public class Meow : MonoBehaviour
     private AudioSource source;
 
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         source = GetComponent<AudioSource>();   
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnMeow(InputAction.CallbackContext context)
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (context.performed)
         {
             source.clip = sounds[Random.Range(0, sounds.Length)];
             source.Play();
-
         }
-
     }
 }

@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private PlayerInput playerInput => GetComponent<PlayerInput>();
     private Rigidbody rigidBody => GetComponent<Rigidbody>();
     private CapsuleCollider capsuleCollider => GetComponent<CapsuleCollider>();
-    private GameManager gameManager => FindObjectOfType<GameManager>();
+    private GameManager gameManager => FindAnyObjectByType<GameManager>();
     public bool canCatchFish = false;
     public List<FishController> fishToCatch = new List<FishController>();
     private int fishCount = 0;
@@ -105,7 +103,7 @@ public class PlayerController : MonoBehaviour
         }
         for (int i = 0; i < animators.Length; i++)
         {
-            animators[i].SetFloat("WalkSpeedMultiplier", rigidBody.velocity.magnitude * 1.3f);
+            animators[i].SetFloat("WalkSpeedMultiplier", rigidBody.linearVelocity.magnitude * 1.3f);
         }
 
         if (isWalking)
@@ -115,12 +113,12 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * walkSpeed;
-        rigidBody.velocity = Vector3.Lerp(rigidBody.velocity, new Vector3(movement.x, rigidBody.velocity.y, movement.z), Time.deltaTime * 17f);
+        rigidBody.linearVelocity = Vector3.Lerp(rigidBody.linearVelocity, new Vector3(movement.x, rigidBody.linearVelocity.y, movement.z), Time.deltaTime * 17f);
 
         if (jump && canJump && !jumped)
         {
             //rigidBody.velocity = new Vector3(rigidBody.velocity.x, jumpHeight, rigidBody.velocity.z);
-            rigidBody.velocity = Vector3.Lerp(rigidBody.velocity, new Vector3(rigidBody.velocity.x, jumpHeight, rigidBody.velocity.z), Time.deltaTime * 17f);
+            rigidBody.linearVelocity = Vector3.Lerp(rigidBody.linearVelocity, new Vector3(rigidBody.linearVelocity.x, jumpHeight, rigidBody.linearVelocity.z), Time.deltaTime * 17f);
             jumped = true;
         }
         // ChatGPT

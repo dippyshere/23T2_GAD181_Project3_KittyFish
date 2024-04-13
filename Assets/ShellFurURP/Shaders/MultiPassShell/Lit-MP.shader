@@ -146,7 +146,7 @@ SubShader
         #pragma multi_compile _ DOTS_INSTANCING_ON
         #pragma multi_compile_fragment _ DEBUG_DISPLAY
 
-        //#pragma exclude_renderers gles
+        #pragma exclude_renderers gles
 
         #pragma vertex vert
         #pragma fragment frag
@@ -168,7 +168,7 @@ SubShader
         #pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
 #endif
 
-        //#pragma exclude_renderers gles
+        #pragma exclude_renderers gles
 
         #pragma vertex vert
         #pragma fragment frag
@@ -189,7 +189,7 @@ SubShader
         #pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
 #endif
 
-        //#pragma exclude_renderers gles
+        #pragma exclude_renderers gles
 
         #pragma vertex vert
         #pragma fragment frag
@@ -213,7 +213,7 @@ SubShader
         #pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
 #endif
 
-        //#pragma exclude_renderers gles
+        #pragma exclude_renderers gles
 
         #pragma vertex vert
         #pragma fragment frag
@@ -261,7 +261,7 @@ SubShader
         #pragma multi_compile_instancing
         #pragma multi_compile _ DOTS_INSTANCING_ON
 
-        //#pragma exclude_renderers gles
+        #pragma exclude_renderers gles
 
         #pragma target 3.5
         #pragma vertex vert
@@ -282,7 +282,7 @@ SubShader
         #pragma shader_feature EDITOR_VISUALIZATION
         #pragma shader_feature _ _MATERIAL_TYPE_PHYSICAL_HAIR
 
-        //#pragma exclude_renderers gles
+        #pragma exclude_renderers gles
 
         #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/SurfaceInput.hlsl"
         #include "./Param-MP.hlsl"

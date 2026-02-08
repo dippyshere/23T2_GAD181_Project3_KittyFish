@@ -276,7 +276,7 @@ CBSDF EvaluateBSDF(half3 V, half3 L, BSDFData bsdfData)
 
     //TRT
     {
-        // Attenutation (Simplified for H = ¡Ì3/2)
+        // Attenutation (Simplified for H = ï¿½ï¿½3/2)
         half cosGammaO = SafeSqrt(1 - Sq(HAIR_H_TRT));
         half cosTheta  = angles.cosThetaO * cosGammaO;
         F = F_Schlick(bsdfData.fresnel0, cosTheta);
@@ -300,13 +300,11 @@ CBSDF EvaluateBSDF(half3 V, half3 L, BSDFData bsdfData)
     
     // Transmission event is built into the model.
     // Some stubborn NaNs have cropped up due to the angle optimization, we suppress them here with a max for now.
-
-    // NaN suppression is moved to "after CalculateFinalColor()".
-    cbsdf.specR = S;//max(S, 0);
+    cbsdf.specR = max(S, 0);
 
     // See "Analytic Tangent Irradiance Environment Maps for Anisotropic Surfaces".
-    //cbsdf.diffR = clampedNdotL; // for URP
-    cbsdf.diffR = Lambert() * clampedNdotL; // from HDRP
+    cbsdf.diffR = clampedNdotL; // for URP
+    //cbsdf.diffR = Lambert() * clampedNdotL; // for HDRP
     
     return cbsdf;
 }
@@ -322,7 +320,14 @@ half3 EvaluateBSDF_Env(BSDFData bsdfData, InputData inputData)
     
     half iblPerceptualRoughness = bsdfData.perceptualRoughness;
     half surfaceReduction = 1.0 / (iblPerceptualRoughness * iblPerceptualRoughness + 1.0);
-    half3 indirectSpecular = GlossyEnvironmentReflection(R, 1, bsdfData.ambientOcclusion); // function in Lighting.hlsl
+
+    // Functions in Lighting.hlsl
+#if USE_CLUSTER_LIGHT_LOOP
+    // Sample the reflection probe atlas.
+    half3 indirectSpecular = GlossyEnvironmentReflection(R, inputData.positionWS, 1, bsdfData.ambientOcclusion, inputData.normalizedScreenSpaceUV);
+#else
+    half3 indirectSpecular = GlossyEnvironmentReflection(R, 1, bsdfData.ambientOcclusion);
+#endif
     indirectSpecular *= surfaceReduction * lerp(bsdfData.fresnel0, saturate(sqrt(iblPerceptualRoughness) + DEFAULT_HAIR_SPECULAR_VALUE), fresnelTerm);
 
     // Modify the roughness to approximate a larger area light source.
@@ -389,9 +394,11 @@ half4 LightingHairFX(MarschnerHairSurfaceData hairSurfaceData, SurfaceData surfa
 #ifdef _ADDITIONAL_LIGHTS
     uint pixelLightCount = GetAdditionalLightsCount();
     // We support directly Forward Plus for 2022.2, and skip support for the Clustered (experimental)
-    #if USE_FORWARD_PLUS
-    for (uint lightIndex = 0; lightIndex < min(_AdditionalLightsDirectionalCount, MAX_VISIBLE_LIGHTS); lightIndex++)
+    #if USE_CLUSTER_LIGHT_LOOP
+    [loop] for (uint lightIndex = 0; lightIndex < min(_AdditionalLightsDirectionalCount, MAX_VISIBLE_LIGHTS); lightIndex++)
     {
+        CLUSTER_LIGHT_LOOP_SUBTRACTIVE_LIGHT_CHECK
+
         Light light = GetAdditionalLight(lightIndex, inputData, shadowMask, aoFactor);
 
 #ifdef _LIGHT_LAYERS
@@ -422,9 +429,13 @@ half4 LightingHairFX(MarschnerHairSurfaceData hairSurfaceData, SurfaceData surfa
 #ifdef _ADDITIONAL_LIGHTS_VERTEX
     lightingData.vertexLightingColor += inputData.vertexLighting * bsdfData.diffuseColor;
 #endif
-
-    // Some stubborn NaNs have cropped up due to the angle optimization.
-    return max(CalculateFinalColor(lightingData, surfaceData.alpha), 0);
+    
+#if REAL_IS_HALF
+    // Clamp any half.inf+ to HALF_MAX
+    return min(CalculateFinalColor(lightingData, surfaceData.alpha), HALF_MAX);
+#else
+    return CalculateFinalColor(lightingData, surfaceData.alpha);
+#endif
 }
 
 #endif

@@ -7,7 +7,7 @@
 #if defined(_FUR_SPECULAR) && defined(_FUR_SPECULAR_DEFERRED)
 #include "./FurSpecular.hlsl"
 #endif
-#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/UnityGBuffer.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutput.hlsl"
 
 // VR single pass instance compability:
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
@@ -221,7 +221,7 @@ void geom(triangle v2g input[3], inout TriangleStream<g2f> stream)
 #endif
 //-----------------------------------(above) For Microsoft Shader Model < 4.1-----------------------------------
 
-FragmentOutput frag(g2f input)
+GBufferFragOutput frag(g2f input)
 {
     UNITY_SETUP_INSTANCE_ID(input);
 #if UNITY_ANY_INSTANCING_ENABLED
@@ -288,7 +288,11 @@ FragmentOutput frag(g2f input)
     inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.positionCS);
     inputData.shadowMask = SAMPLE_SHADOWMASK(input.staticLightmapUV);
 
+#if UNITY_VERSION >= 600000
+    SETUP_DEBUG_TEXTURE_DATA(inputData, UNDO_TRANSFORM_TEX(input.uv, _BaseMap));
+#else
     SETUP_DEBUG_TEXTURE_DATA(inputData, input.uv, _BaseMap);
+#endif
 
 #ifdef _DBUFFER
     ApplyDecalToSurfaceData(input.positionCS, surfaceData, inputData);
@@ -360,7 +364,7 @@ FragmentOutput frag(g2f input)
     // Store GI, Emission, Rim Light, and Fur Specular in the GBuffer3.
 
     color += GlobalIllumination(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.positionWS, inputData.normalWS, inputData.viewDirectionWS);
-    FragmentOutput output = BRDFDataToGbuffer(brdfData, inputData, surfaceData.smoothness, surfaceData.emission + color, surfaceData.occlusion);
+    GBufferFragOutput output = PackGBuffersBRDFData(brdfData, inputData, surfaceData.smoothness, surfaceData.emission + color, surfaceData.occlusion);
 
     return output;
 }

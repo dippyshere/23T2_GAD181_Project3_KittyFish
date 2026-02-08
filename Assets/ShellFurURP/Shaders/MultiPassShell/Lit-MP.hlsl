@@ -194,7 +194,11 @@ void frag(Varyings input
     inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.positionCS);
     inputData.shadowMask = SAMPLE_SHADOWMASK(input.staticLightmapUV);
 
-    //SETUP_DEBUG_TEXTURE_DATA(inputData, input.uv, _BaseMap);
+#if UNITY_VERSION >= 600000
+    SETUP_DEBUG_TEXTURE_DATA(inputData, UNDO_TRANSFORM_TEX(input.uv, _BaseMap));
+#else
+    SETUP_DEBUG_TEXTURE_DATA(inputData, input.uv, _BaseMap);
+#endif
 
 #ifdef _DBUFFER
     ApplyDecalToSurfaceData(input.positionCS, surfaceData, inputData);
@@ -241,9 +245,11 @@ void frag(Varyings input
     // Calculate additional lights.
 #ifdef _ADDITIONAL_LIGHTS
 
-#if USE_FORWARD_PLUS // Forward+ rendering path.
-    for (uint lightIndex = 0; lightIndex < min(_AdditionalLightsDirectionalCount, MAX_VISIBLE_LIGHTS); lightIndex++)
+#if USE_CLUSTER_LIGHT_LOOP // Forward+ rendering path.
+    [loop] for (uint lightIndex = 0; lightIndex < min(_AdditionalLightsDirectionalCount, MAX_VISIBLE_LIGHTS); lightIndex++)
     {
+        CLUSTER_LIGHT_LOOP_SUBTRACTIVE_LIGHT_CHECK
+
         Light light = GetAdditionalLight(lightIndex, inputData, shadowMask, aoFactor);
 
 #ifdef _LIGHT_LAYERS

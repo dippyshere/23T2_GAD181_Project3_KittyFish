@@ -7,7 +7,7 @@
 #if defined(_FUR_SPECULAR) && defined(_FUR_SPECULAR_DEFERRED)
 #include "./FurSpecular-MP.hlsl"
 #endif
-#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/UnityGBuffer.hlsl"
+#include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/GBufferOutput.hlsl"
 
 // VR single pass instance compability:
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
@@ -94,7 +94,7 @@ Varyings vert(Attributes input)
     return output;
 }
 
-FragmentOutput frag(Varyings input)
+GBufferFragOutput frag(Varyings input)
 {
     UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(input);
 
@@ -156,7 +156,11 @@ FragmentOutput frag(Varyings input)
     inputData.normalizedScreenSpaceUV = GetNormalizedScreenSpaceUV(input.positionCS);
     inputData.shadowMask = SAMPLE_SHADOWMASK(input.staticLightmapUV);
 
-    //SETUP_DEBUG_TEXTURE_DATA(inputData, input.uv, _BaseMap);
+#if UNITY_VERSION >= 600000
+    SETUP_DEBUG_TEXTURE_DATA(inputData, UNDO_TRANSFORM_TEX(input.uv, _BaseMap));
+#else
+    SETUP_DEBUG_TEXTURE_DATA(inputData, input.uv, _BaseMap);
+#endif
 
 #ifdef _DBUFFER
     ApplyDecalToSurfaceData(input.positionCS, surfaceData, inputData);
@@ -228,7 +232,7 @@ FragmentOutput frag(Varyings input)
     // Store GI, Emission, Rim Light, and Fur Specular in the GBuffer3.
 
     color += GlobalIllumination(brdfData, inputData.bakedGI, surfaceData.occlusion, inputData.positionWS, inputData.normalWS, inputData.viewDirectionWS);
-    FragmentOutput output = BRDFDataToGbuffer(brdfData, inputData, surfaceData.smoothness, surfaceData.emission + color, surfaceData.occlusion);
+    GBufferFragOutput output = PackGBuffersBRDFData(brdfData, inputData, surfaceData.smoothness, surfaceData.emission + color, surfaceData.occlusion);
 
     return output;
 }

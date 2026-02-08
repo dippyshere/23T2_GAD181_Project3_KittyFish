@@ -26,7 +26,6 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ALPHATEST_ON
-  - _FUR_RIM_LIGHTING
   - _FUR_SPECULAR
   m_InvalidKeywords:
   - _CONSIDERSHADOW_ON
@@ -150,7 +149,7 @@ Material:
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _FurLengthIntensity: 3.15
-    - _FurRimLighting: 1
+    - _FurRimLighting: 0
     - _FurRimLightingDeferred: 0
     - _FurScale: 2
     - _FurSmoothness: 0.5
@@ -166,7 +165,7 @@ Material:
     - _Material_Type: 0
     - _MedulaAbsorb: 0.9
     - _MedulaScatter: 0.5
-    - _Metallic: 0.31
+    - _Metallic: 0
     - _NoFurShadow: 1
     - _NormalScale: 0.3
     - _Occlusion: 0

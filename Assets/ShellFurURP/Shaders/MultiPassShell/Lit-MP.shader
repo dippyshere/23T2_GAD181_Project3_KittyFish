@@ -122,7 +122,7 @@ SubShader
 #if (UNITY_VERSION >= 202220)
         #pragma shader_feature_local_fragment _ _ALPHATEST_ON
         #pragma multi_compile_fragment _ LOD_FADE_CROSSFADE
-        #pragma multi_compile _ _FORWARD_PLUS
+        #pragma multi_compile _ _CLUSTER_LIGHT_LOOP
         #pragma multi_compile_fragment _ _WRITE_RENDERING_LAYERS
 #endif
 
@@ -147,6 +147,7 @@ SubShader
         #pragma multi_compile_fragment _ DEBUG_DISPLAY
 
         #pragma exclude_renderers gles
+        //#pragma target 4.5
 
         #pragma vertex vert
         #pragma fragment frag

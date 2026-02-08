@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 4000013213224824}
   - component: {fileID: 205000012753791500}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Rock_06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &4000013213224824
 Transform:
@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 4000013334928464}
   - component: {fileID: 33000012003983462}
   - component: {fileID: 23000011723030366}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Rock_06_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,6 +123,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -144,9 +146,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1000013699881090
 GameObject:
@@ -159,7 +163,7 @@ GameObject:
   - component: {fileID: 4000011222723220}
   - component: {fileID: 33000011351341720}
   - component: {fileID: 23000010345550362}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Rock_06_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -209,6 +213,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -230,9 +236,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1000014048546106
 GameObject:
@@ -245,7 +253,7 @@ GameObject:
   - component: {fileID: 4000014037957788}
   - component: {fileID: 33000010114941522}
   - component: {fileID: 23000012633272854}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Rock_06_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,6 +303,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -316,7 +326,9 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}

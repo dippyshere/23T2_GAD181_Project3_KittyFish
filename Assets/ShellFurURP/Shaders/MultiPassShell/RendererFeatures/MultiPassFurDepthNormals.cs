@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.RenderGraphModule;
 using UnityEngine.Rendering.Universal;
 using System.Reflection;
 
@@ -61,7 +62,8 @@ public class MultiPassFurDepthNormals : ScriptableRendererFeature
     private readonly static FieldInfo normalsTextureFieldInfo = typeof(UniversalRenderer).GetField("m_NormalsTexture", BindingFlags.NonPublic | BindingFlags.Instance);
     private readonly static FieldInfo depthTextureFieldInfo = typeof(UniversalRenderer).GetField("m_DepthTexture", BindingFlags.NonPublic | BindingFlags.Instance);
 #endif
-
+    static readonly int TotalLayer = Shader.PropertyToID("_TOTAL_LAYER");
+    static readonly int CurrentLayer = Shader.PropertyToID("_CURRENT_LAYER");
     // From "DecalRendererFeature.cs".
     public bool IsAutomaticDBuffer()
     {
@@ -86,6 +88,7 @@ public class MultiPassFurDepthNormals : ScriptableRendererFeature
         public FurRenderPass(PassSettings setting, FilterSettings filterSettings)
         {
             m_ProfilerTag = setting.passTag;
+            profilingSampler = new ProfilingSampler(m_ProfilerTag);
             string[] shaderTags = filterSettings.PassNames;
             this.settings = setting;
 
@@ -100,57 +103,103 @@ public class MultiPassFurDepthNormals : ScriptableRendererFeature
             }
         }
 
-        public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
+        private class PassData
         {
-            // Fur uses Alpha Test for Transparency.
-            SortingCriteria sortingCriteria = renderingData.cameraData.defaultOpaqueSortFlags;
-
-            CommandBuffer cmd = CommandBufferPool.Get(m_ProfilerTag);
-
-            DrawingSettings normalDrawingSettings = CreateDrawingSettings(m_ShaderTagIdList[2], ref renderingData, sortingCriteria);
-
-            cmd.SetGlobalFloat("_TOTAL_LAYER", settings.ShellAmount);
-            for (int i = 0; i < settings.ShellAmount; i++)
-            {
-                cmd.SetGlobalFloat("_CURRENT_LAYER", i);
-                context.ExecuteCommandBuffer(cmd);
-                cmd.Clear();
-                context.DrawRenderers(renderingData.cullResults, ref normalDrawingSettings, ref filter);
-            }
-
-            CommandBufferPool.Release(cmd);
+            internal RendererListHandle[] rendererLists;
+            internal int shellAmount;
         }
 
-        public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
+        private static bool UseDepthPriming(UniversalCameraData cameraData)
         {
-            // We can set render target directly by providing name in URP 12 and below. (No need reflection)
-            var renderer = renderingData.cameraData.renderer as UniversalRenderer;
-#if UNITY_2022_1_OR_NEWER
-            var normalsTextureHandle = normalsTextureFieldInfo.GetValue(renderer) as RTHandle;
-            var depthTextureHandle = depthTextureFieldInfo.GetValue(renderer) as RTHandle;
-#endif
-
-
 #if UNITY_ANDROID || UNITY_IOS || UNITY_TVOS
-            bool m_DepthPrimingRecommended = false;
+            bool depthPrimingRecommended = false;
 #else
-            bool m_DepthPrimingRecommended = true;
+            bool depthPrimingRecommended = true;
 #endif
-            // The actual Depth Priming mode.
-            bool useDepthPriming = (m_DepthPrimingRecommended && renderer.depthPrimingMode == DepthPrimingMode.Auto) || (renderer.depthPrimingMode == DepthPrimingMode.Forced);
 
-#if UNITY_2022_1_OR_NEWER
-            if (useDepthPriming && (renderingData.cameraData.renderType == CameraRenderType.Base || renderingData.cameraData.clearDepth) && normalsTextureHandle != null)
-                ConfigureTarget(normalsTextureHandle, renderingData.cameraData.renderer.cameraDepthTargetHandle);
-            // Avoid null reference exception when Decal Mode (user provide) does not match the actual Decal Mode.
-            else if (normalsTextureHandle != null)
-                ConfigureTarget(normalsTextureHandle, depthTextureHandle);
-#else
-            if (useDepthPriming && (renderingData.cameraData.renderType == CameraRenderType.Base || renderingData.cameraData.clearDepth))
-                ConfigureTarget("_CameraNormalsTexture", renderingData.cameraData.renderer.cameraDepthTarget);
-            else
-                ConfigureTarget("_CameraNormalsTexture", "_CameraDepthTexture");
-#endif
+            var renderer = cameraData.renderer as UniversalRenderer;
+            if (renderer == null)
+                return false;
+
+            return (depthPrimingRecommended && renderer.depthPrimingMode == DepthPrimingMode.Auto) ||
+                renderer.depthPrimingMode == DepthPrimingMode.Forced;
+        }
+
+        private static TextureHandle GetDepthTarget(UniversalResourceData resourceData, UniversalCameraData cameraData)
+        {
+            TextureHandle depthTarget = resourceData.cameraDepthTexture;
+            if (UseDepthPriming(cameraData) && (cameraData.renderType == CameraRenderType.Base || cameraData.clearDepth))
+                depthTarget = resourceData.activeDepthTexture;
+
+            if (!depthTarget.IsValid())
+                depthTarget = resourceData.activeDepthTexture;
+
+            return depthTarget;
+        }
+
+        public override void RecordRenderGraph(RenderGraph renderGraph, ContextContainer frameData)
+        {
+            UniversalResourceData resourceData = frameData.Get<UniversalResourceData>();
+            UniversalRenderingData renderingData = frameData.Get<UniversalRenderingData>();
+            UniversalCameraData cameraData = frameData.Get<UniversalCameraData>();
+            UniversalLightData lightData = frameData.Get<UniversalLightData>();
+
+            TextureHandle depthTarget = GetDepthTarget(resourceData, cameraData);
+            TextureHandle normalsTexture = resourceData.cameraNormalsTexture;
+            if (!depthTarget.IsValid() || !normalsTexture.IsValid())
+                return;
+
+            using (var builder = renderGraph.AddRasterRenderPass<PassData>(m_ProfilerTag, out var passData, profilingSampler))
+            {
+                bool isMainCamera = cameraData.camera.CompareTag("MainCamera");
+
+                int layersToRender = isMainCamera ? settings.ShellAmount : 1;
+
+                passData.shellAmount = layersToRender;
+
+                SortingCriteria sortingCriteria = cameraData.defaultOpaqueSortFlags;
+                DrawingSettings drawingSettings = RenderingUtils.CreateDrawingSettings(m_ShaderTagIdList[2], renderingData, cameraData, lightData, sortingCriteria);
+                drawingSettings.perObjectData = PerObjectData.None;
+
+                passData.rendererLists = new RendererListHandle[passData.shellAmount];
+
+                var param = new RendererListParams(renderingData.cullResults, drawingSettings, filter);
+
+                for (int layer = 0; layer < passData.shellAmount; ++layer)
+                {
+                    passData.rendererLists[layer] = renderGraph.CreateRendererList(param);
+
+                    if (!passData.rendererLists[layer].IsValid())
+                    {
+                        for (int j = layer; j < passData.shellAmount; ++j)
+                            passData.rendererLists[j] = new RendererListHandle();
+                        break;
+                    }
+
+                    builder.UseRendererList(passData.rendererLists[layer]);
+                }
+
+                builder.SetRenderAttachment(normalsTexture, 0, AccessFlags.Write);
+                builder.SetRenderAttachmentDepth(depthTarget, AccessFlags.ReadWrite);
+                builder.AllowGlobalStateModification(true);
+                if (cameraData.xr.enabled)
+                {
+                    builder.EnableFoveatedRasterization(cameraData.xr.supportsFoveatedRendering);
+                    builder.SetExtendedFeatureFlags(ExtendedFeatureFlags.MultiviewRenderRegionsCompatible);
+                }
+
+                builder.SetRenderFunc((PassData data, RasterGraphContext context) =>
+                {
+                    context.cmd.SetGlobalFloat(TotalLayer, data.shellAmount);
+                    for (int i = 0; i < data.shellAmount; i++)
+                    {
+                        if (!data.rendererLists[i].IsValid())
+                            continue;
+                        context.cmd.SetGlobalFloat(CurrentLayer, i);
+                        context.cmd.DrawRendererList(data.rendererLists[i]);
+                    }
+                });
+            }
         }
     }
 
@@ -218,5 +267,3 @@ public class MultiPassFurDepthNormals : ScriptableRendererFeature
         }
     }
 }
-
-

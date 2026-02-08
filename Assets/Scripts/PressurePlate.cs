@@ -10,22 +10,19 @@ public class PressurePlate : MonoBehaviour
     [SerializeField] private float sinkAmount = 0.2f; // Amount to sink down when activated
 
     private bool isActivated = false;
-    private bool isCatOnPlate = false;
 
     public bool active = true;
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        if (!isActivated && !isCatOnPlate && other.CompareTag("Player"))
+        if (!isActivated && other.CompareTag("Player") && other.GetComponent<PlayerController>().IsOnPressurePlate(this))
         {
             ActivatePlate();
         }
-        isCatOnPlate = true;
     }
 
     public void OnTriggerExit(Collider other)
     {
-        isCatOnPlate = false;
         if (requiresContinuousActivation && isActivated && !IsAnyCatOnPlate())
         {
             DeactivatePlate();

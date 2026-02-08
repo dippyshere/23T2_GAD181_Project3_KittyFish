@@ -6,12 +6,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    static readonly int IsWalking = Animator.StringToHash("isWalking");
+    static readonly int WalkSpeedMultiplier = Animator.StringToHash("WalkSpeedMultiplier");
     [SerializeField] private float walkSpeed = 5f;
     [SerializeField] private float jumpHeight = 1f;
     [SerializeField] private float coyoteTime = 0.1f;
     [SerializeField] private string controlScheme = "KeyboardLeft";
     public string fishTag = "Fish";
-    [SerializeField] private Animator[] animators;
+    [SerializeField] private Animator animator;
     [SerializeField] private GameObject fishUI;
     [SerializeField] private TextMeshProUGUI fishCountText;
     [SerializeField] private GameObject offscreenArrow;
@@ -35,12 +37,18 @@ public class PlayerController : MonoBehaviour
     private PressurePlate currentPressurePlate = null;
 
     public int fishTarget = 6;
+    Camera mainCamera;
+    RectTransform _rectTransform;
+    RectTransform _rectTransform1;
 
     private void Start()
     {
+        _rectTransform1 = offscreenUI.GetComponent<RectTransform>();
+        _rectTransform = offscreenArrow.GetComponent<RectTransform>();
         playerInput.SwitchCurrentControlScheme(controlScheme, Keyboard.current);
         currentPressurePlate = null;
         StartCoroutine(ResetPressurePlate());
+        mainCamera = Camera.main;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -63,17 +71,19 @@ public class PlayerController : MonoBehaviour
 
     public void OnFishInteract(InputAction.CallbackContext context)
     {
-        if (context.started && canCatchFish)
+        if (!context.started || !canCatchFish)
         {
-            for (int i = 0; i < fishToCatch.Count; i++)
-            {
-                fishToCatch[i].CatchFish();
-                fishCount++;
-                UpdateFishText();
-                fishToCatch.Remove(fishToCatch[i]);
-            }
-            fishToCatch.Clear();
+            return;
         }
+
+        for (int i = 0; i < fishToCatch.Count; i++)
+        {
+            fishToCatch[i].CatchFish();
+            fishCount++;
+            UpdateFishText();
+            fishToCatch.Remove(fishToCatch[i]);
+        }
+        fishToCatch.Clear();
         // Debug.Log("Fish Interact from " + controlScheme);
     }
 
@@ -96,15 +106,9 @@ public class PlayerController : MonoBehaviour
             velocity.y = 0f;
         }
 
-        isWalking = (horizontalInput != 0f || verticalInput != 0f);
-        for (int i = 0; i < animators.Length; i++)
-        {
-            animators[i].SetBool("isWalking", isWalking);
-        }
-        for (int i = 0; i < animators.Length; i++)
-        {
-            animators[i].SetFloat("WalkSpeedMultiplier", rigidBody.linearVelocity.magnitude * 1.3f);
-        }
+        isWalking = horizontalInput != 0f || verticalInput != 0f;
+        animator.SetBool(IsWalking, isWalking);
+        animator.SetFloat(WalkSpeedMultiplier, rigidBody.linearVelocity.magnitude * 1.3f);
 
         if (isWalking)
         {
@@ -121,19 +125,18 @@ public class PlayerController : MonoBehaviour
             rigidBody.linearVelocity = Vector3.Lerp(rigidBody.linearVelocity, new Vector3(rigidBody.linearVelocity.x, jumpHeight, rigidBody.linearVelocity.z), Time.deltaTime * 17f);
             jumped = true;
         }
-        // ChatGPT
         // Check if the cat is offscreen
         if (!IsCatOnScreen())
         {
             // Calculate the position of the cat in screen space
             Vector3 catPositionInWorld = gameObject.transform.position;
 
-            Vector3 catPositionInScreen = Camera.main.WorldToScreenPoint(catPositionInWorld);
+            Vector3 catPositionInScreen = mainCamera.WorldToScreenPoint(catPositionInWorld);
 
-            if (Vector3.Dot(catPositionInWorld - Camera.main.transform.position, Camera.main.transform.forward) < 0)
+            if (Vector3.Dot(catPositionInWorld - mainCamera.transform.position, mainCamera.transform.forward) < 0)
             {
-                catPositionInWorld.z = Camera.main.transform.position.z + 0.01f;
-                catPositionInScreen = Camera.main.WorldToScreenPoint(catPositionInWorld);
+                catPositionInWorld.z = mainCamera.transform.position.z + 0.01f;
+                catPositionInScreen = mainCamera.WorldToScreenPoint(catPositionInWorld);
             }
 
             float offsetX = 150f * Screen.width / 1280;
@@ -141,18 +144,11 @@ public class PlayerController : MonoBehaviour
 
             // Clamp the circular UI element position to stay within the screen bounds
             Vector3 clampedPosition = new Vector3(
-                Mathf.Clamp(catPositionInScreen.x, offscreenUI.GetComponent<RectTransform>().rect.width / 2f + offsetX, Screen.width - offscreenUI.GetComponent<RectTransform>().rect.width / 2f - offsetX),
-                Mathf.Clamp(catPositionInScreen.y, offscreenUI.GetComponent<RectTransform>().rect.height / 2f + offsetY, Screen.height - offscreenUI.GetComponent<RectTransform>().rect.height / 2f - offsetY),
+                Mathf.Clamp(catPositionInScreen.x, _rectTransform1.rect.width / 2f + offsetX, Screen.width - _rectTransform1.rect.width / 2f - offsetX),
+                Mathf.Clamp(catPositionInScreen.y, _rectTransform1.rect.height / 2f + offsetY, Screen.height - _rectTransform1.rect.height / 2f - offsetY),
                 catPositionInScreen.z
             );
-            if (offscreenUI.activeSelf)
-            {
-                offscreenUI.GetComponent<RectTransform>().position = Vector3.Lerp(offscreenUI.GetComponent<RectTransform>().position, clampedPosition, Time.deltaTime * 8f);
-            }
-            else
-            {
-                offscreenUI.GetComponent<RectTransform>().position = clampedPosition;
-            }
+            _rectTransform1.position = offscreenUI.activeSelf ? Vector3.Lerp(_rectTransform1.position, clampedPosition, Time.deltaTime * 8f) : clampedPosition;
 
             //KeepFullyOnScreen(offscreenUI, catPositionInScreen);
 
@@ -161,7 +157,7 @@ public class PlayerController : MonoBehaviour
             float angle = Mathf.Atan2(catPositionInScreen.y - screenCenter.y, catPositionInScreen.x - screenCenter.x) * Mathf.Rad2Deg;
 
             // Rotate the arrow image to point towards the cat
-            offscreenArrow.GetComponent<RectTransform>().rotation = Quaternion.Euler(0f, 0f, angle);
+            _rectTransform.rotation = Quaternion.Euler(0f, 0f, angle);
 
             offscreenUI.SetActive(true);
             offscreenCamera.SetActive(true);
@@ -221,7 +217,15 @@ public class PlayerController : MonoBehaviour
         //}
         if (other.CompareTag("PressurePlate"))
         {
+            if (Vector3.Distance(other.transform.position, transform.position) > 3f)
+            {
+                return;
+            }
             currentPressurePlate = other.GetComponent<PressurePlate>();
+            if (currentPressurePlate != null)
+            {
+                currentPressurePlate.OnTriggerEnter(capsuleCollider);
+            }
         }
         //else if (other.CompareTag("Door"))
         //{
@@ -295,9 +299,8 @@ public class PlayerController : MonoBehaviour
 
     private bool IsCatOnScreen()
     {
-        // ChatGPT
         // Check if the cat's position is within the screen boundaries
-        Vector3 catPositionInScreen = Camera.main.WorldToScreenPoint(gameObject.transform.position);
+        Vector3 catPositionInScreen = mainCamera.WorldToScreenPoint(gameObject.transform.position);
         return catPositionInScreen.x >= 0 + 50f * Screen.width / 1280 && catPositionInScreen.x <= Screen.width - 50f * Screen.width / 1280 &&
                catPositionInScreen.y >= 0 + 50f * Screen.height / 720 && catPositionInScreen.y <= Screen.height -50f * Screen.height / 720;
     }

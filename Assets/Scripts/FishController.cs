@@ -22,9 +22,11 @@ public class FishController : MonoBehaviour
     private Quaternion targetRotation;
     private Vector3 velocity;
     private string lureTag = "Lure";
+    private Camera mainCamera;
 
     private void Start()
     {
+        mainCamera = Camera.main;
         rb = GetComponent<Rigidbody>();
 
         if (meshes != null && meshes.Length > 0)
@@ -83,9 +85,9 @@ public class FishController : MonoBehaviour
         }
 
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime);
-        p1InteractPrompt.transform.LookAt(Camera.main.transform);
+        p1InteractPrompt.transform.LookAt(mainCamera.transform);
         p1InteractPrompt.transform.rotation = Quaternion.Euler(0f, p1InteractPrompt.transform.rotation.eulerAngles.y + 180f, 0f);
-        p2InteractPrompt.transform.LookAt(Camera.main.transform);
+        p2InteractPrompt.transform.LookAt(mainCamera.transform);
         p2InteractPrompt.transform.rotation = Quaternion.Euler(0f, p2InteractPrompt.transform.rotation.eulerAngles.y + 180f, 0f);
     }
 
@@ -100,7 +102,7 @@ public class FishController : MonoBehaviour
             PlayerController playerController = other.GetComponent<PlayerController>();
             if (playerController != null)
             {
-                if (playerController.fishTag == gameObject.tag)
+                if (gameObject.CompareTag(playerController.fishTag))
                 {
                     if (orangeFish)
                     {
@@ -128,7 +130,7 @@ public class FishController : MonoBehaviour
             PlayerController playerController = other.GetComponent<PlayerController>();
             if (playerController != null)
             {
-                if (playerController.fishTag == gameObject.tag)
+                if (gameObject.CompareTag(playerController.fishTag))
                 {
                     if (orangeFish)
                     {
@@ -175,7 +177,7 @@ public class FishController : MonoBehaviour
         isJumping = true;
 
         // Call StopJumping after a short delay to reset the jumping flag
-        Invoke("StopJumping", 0.5f);
+        Invoke(nameof(StopJumping), 0.5f);
     }
 
     private void StopJumping()
@@ -194,11 +196,8 @@ public class FishController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (targetPosition != null)
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawSphere(targetPosition, 0.5f);
-        }
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(targetPosition, 0.5f);
         Gizmos.DrawWireCube(pondBounds.center, pondBounds.size);
     }
 }

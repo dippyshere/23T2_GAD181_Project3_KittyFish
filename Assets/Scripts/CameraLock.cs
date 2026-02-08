@@ -12,6 +12,8 @@ public class CameraLock : MonoBehaviour
     [SerializeField] private int purpleFishTarget = 6;
     [SerializeField] private bool orangeFish = false;
     [SerializeField] private bool purpleFish = false;
+    public float fov = 60f;
+    public float followSpeed = 5f;
 
     private CameraController cameraController => Camera.main.GetComponent<CameraController>();
     private BoxCollider boxCollider => GetComponent<BoxCollider>();
@@ -26,10 +28,11 @@ public class CameraLock : MonoBehaviour
             {
                 cameraLocked = false;
                 cameraController.trackCats = true;
+                cameraController.followSpeed = 5f;
                 if (orangeFish)
                 {
                     PlayerController playerController = player1Transform.GetComponent<PlayerController>();
-                    if (playerController != null)
+                    if (playerController)
                     {
                         playerController.HideFishUI();
                     }
@@ -37,7 +40,7 @@ public class CameraLock : MonoBehaviour
                 if (purpleFish)
                 {
                     PlayerController playerController = player2Transform.GetComponent<PlayerController>();
-                    if (playerController != null)
+                    if (playerController)
                     {
                         playerController.HideFishUI();
                     }
@@ -55,6 +58,8 @@ public class CameraLock : MonoBehaviour
             cameraController.trackCats = false;
             cameraController.positionOverride = cameraPosition;
             cameraController.rotationOverride = cameraRotation;
+            cameraController.fovOverride = fov;
+            cameraController.followSpeed = followSpeed;
             // Debug.Log("Camera locked");
             if (orangeFish)
             {
@@ -77,7 +82,6 @@ public class CameraLock : MonoBehaviour
         }
     }
 
-    // ChatGPT
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

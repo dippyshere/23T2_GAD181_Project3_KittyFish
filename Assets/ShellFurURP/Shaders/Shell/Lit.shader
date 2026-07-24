@@ -37,7 +37,6 @@ Properties
 
     [Space(10)][Toggle(_FUR_SPECULAR)] _FurSpecular("Marschner Specular", Float) = 1
     [Toggle(_FUR_SPECULAR_DEFERRED)] _FurSpecularDeferred("(Slow) Support Deferred Path", Float) = 0.0
-    [Toggle] _ConsiderShadow("Consider Shadow", Float) = 0.0
     _FurSmoothness("Fur Smoothness", Range(0.0, 1.0)) = 0.45
     _Backlit("Backlit", Range(0.0, 1.0)) = 0.25
     _Area("Lit Area", Range(0.01, 1.0)) = 0.1

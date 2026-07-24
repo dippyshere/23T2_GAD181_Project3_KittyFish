@@ -6,17 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/ShaderWarmup.unity
+    guid: 484b2253c69a33b47bbcf645c3bc8008
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 67543d8cb8839f64e82229f354389353
-  - enabled: 0
-    path: Assets/Scenes/LevelTest.unity
-    guid: 2367e07c2d611fb49bdd5626e822c963
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: f33fbb2d48739154aaa196dc8051cca2,
-      type: 2}
-    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 4fdb35a01f311c9478000860ea6fcbfc,
-      type: 3}
-  m_UseUCBPForAssetBundles: 0
+    com.unity.input.settings: {fileID: 11400000, guid: f33fbb2d48739154aaa196dc8051cca2, type: 2}
+    com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 4fdb35a01f311c9478000860ea6fcbfc, type: 3}

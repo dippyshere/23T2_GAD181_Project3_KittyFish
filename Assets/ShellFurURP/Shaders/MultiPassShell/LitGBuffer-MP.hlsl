@@ -168,7 +168,6 @@ GBufferFragOutput frag(Varyings input)
 
     // Get the main light.
     Light mainLight = GetMainLight(inputData.shadowCoord, inputData.positionWS, inputData.shadowMask);
-    _ConsiderShadow = _ConsiderShadow == 1 ? 0 : 1; // Remap from 1/0 to 0/1.
 
     half3 color = half3(0.0, 0.0, 0.0);
 
@@ -198,7 +197,7 @@ GBufferFragOutput frag(Varyings input)
     if (IsMatchingLightLayer(mainLight.layerMask, meshRenderingLayers))
 #endif
     {
-        half3 mainLightColor = mainLight.color.rgb * mainLight.distanceAttenuation * saturate(mainLight.shadowAttenuation + _ConsiderShadow);
+        half3 mainLightColor = mainLight.color.rgb * mainLight.distanceAttenuation * saturate(mainLight.shadowAttenuation);
         color += (mainLightColor * FurBSDFYan(s, mainLight.direction, viewDirWS, normalWS, 1.0, _Backlit, _Area));
     }
 
@@ -215,7 +214,7 @@ GBufferFragOutput frag(Varyings input)
         if (IsMatchingLightLayer(light.layerMask, meshRenderingLayers))
 #endif
         {
-            half3 lightColor = light.color.rgb * light.distanceAttenuation * saturate(light.shadowAttenuation + _ConsiderShadow);
+            half3 lightColor = light.color.rgb * light.distanceAttenuation * saturate(light.shadowAttenuation);
             color += (lightColor * FurBSDFYan(s, light.direction, viewDirWS, normalWS, 1.0, _Backlit, _Area));
         }
     }

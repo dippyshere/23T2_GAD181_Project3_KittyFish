@@ -1,0 +1,1138 @@
+{
+    "m_Name": "",
+    "serializedVersion": "2",
+    "m_Version": 0,
+    "m_DeviceRenderer": 2,
+    "m_RuntimePlatform": 2,
+    "m_QualityLevelName": "High Fidelity",
+    "m_VariantInfoMap": [
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "c526bbf78b9c490babd451bae1dde4f7"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal/CoreBlit",
+                "shaderAssetGUID": "93446b5c5339d4f00b85c159e1159b7c",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "",
+                "subShaderIndex": 0,
+                "passIndex": 23,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "3c80db8ccd728a91d3c6942e57ef04df"
+            },
+            "second": {
+                "shaderName": "Hidden/CubeCopy",
+                "shaderAssetGUID": "3d1317db6fcb0455e99fc9106fae742d",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "7720de7bef1a2f7379b712a2825d6a06"
+            },
+            "second": {
+                "shaderName": "Hidden/Internal-GUITexture",
+                "shaderAssetGUID": "0860a397848c35f488bf42d3c36a3330",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "75282b720079cbf9d8091b515594a1cb"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal Render Pipeline/BokehDepthOfField",
+                "shaderAssetGUID": "2aed67ad60045d54ba3a00c91e2d2631",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "_USE_FAST_SRGB_LINEAR_CONVERSION",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "9d88b0177e32e170b0b1889c32f7b16a"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING LOD_FADE_CROSSFADE SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT _SPECULAR_COLOR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "aa90bba4058120371e48daaf8d5e4972"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS_CASCADE _NORMALMAP _SHADOWS_SOFT _SPECULAR_COLOR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "bd005b36da5a102e0930fac6501ee607"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _NORMALMAP _SPECULAR_COLOR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "ac78bb8f13cbaf91f12371e631d199b4"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "eab87c29f377b2a2f724737eadff5828"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal Render Pipeline/Bloom",
+                "shaderAssetGUID": "5f1864addb451f54bae8c86d230f736e",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "",
+                "subShaderIndex": 0,
+                "passIndex": 1,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "eb40c77932d5cc279ebe1646c061d254"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS_CASCADE _NORMALMAP _SHADOWS_SOFT _SPECULAR_COLOR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "d890d6025b8e043854d33a40159159c7"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _SURFACE_TYPE_TRANSPARENT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "7c308a7a1d5cbd186a9a3fcea2626e48"
+            },
+            "second": {
+                "shaderName": "Shader Graphs/DitheredObject",
+                "shaderAssetGUID": "ead2d5853e4de3a478d7bdef67cf3871",
+                "shaderAssetLocalIdentifierInFile": 0,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _REFLECTION_PROBE_ATLAS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "22196b5d961719cdc9667081ffba59c3"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING LOD_FADE_CROSSFADE SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _NORMALMAP _SPECULAR_COLOR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "4511926a77d647bbf9ca6716d44a4384"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Lit",
+                "shaderAssetGUID": "933532a4fcc9baf4fa0491de14d08ed7",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _NORMALMAP _REFLECTION_PROBE_ATLAS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "44a922f6648250129a7ae222e130c282"
+            },
+            "second": {
+                "shaderName": "Shader Graphs/DitheredObject",
+                "shaderAssetGUID": "ead2d5853e4de3a478d7bdef67cf3871",
+                "shaderAssetLocalIdentifierInFile": 0,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS_CASCADE _REFLECTION_PROBE_ATLAS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SHADOWS_SOFT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "8c090a1cef1ce44b7306ed94c8d48b11"
+            },
+            "second": {
+                "shaderName": "Shader Graphs/Decal",
+                "shaderAssetGUID": "9b4e681081e2b4c469111bb649e2f7ee",
+                "shaderAssetLocalIdentifierInFile": 0,
+                "keywordNames": "FOG_LINEAR INSTANCING_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _DECAL_NORMAL_BLEND_LOW _MAIN_LIGHT_SHADOWS",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "97a1252e9889785e1ae58ab30a367d8a"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT _SPECULAR_COLOR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "a5e942c87e6e9ea2089235e92815c2e3"
+            },
+            "second": {
+                "shaderName": "Shader Graphs/Decal",
+                "shaderAssetGUID": "9b4e681081e2b4c469111bb649e2f7ee",
+                "shaderAssetLocalIdentifierInFile": 0,
+                "keywordNames": "FOG_LINEAR INSTANCING_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _DECAL_NORMAL_BLEND_LOW _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "8ef1f8557d579de11f298cb9a78c051b"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _SPECULAR_COLOR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "f359f13f6b69745893a2d10c6f396ad7"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _EMISSION _MAIN_LIGHT_SHADOWS_CASCADE _RECEIVE_SHADOWS_OFF _SHADOWS_SOFT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "238a1de62fed79074e92a00f69c50c61"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING LOD_FADE_CROSSFADE SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _EMISSION _MAIN_LIGHT_SHADOWS _NORMALMAP",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "37da9015da6759d79bcaecdcb5400ef5"
+            },
+            "second": {
+                "shaderName": "Shader Graphs/WaterVolume-URP",
+                "shaderAssetGUID": "2cddf2ee6a74aca44af00f5a49bd2cf1",
+                "shaderAssetLocalIdentifierInFile": 0,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS_CASCADE _REFLECTION_PROBE_ATLAS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SHADOWS_SOFT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "4642e60d5436731819767da09b07120d"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal Render Pipeline/UberPost",
+                "shaderAssetGUID": "e7857e9d0c934dc4f83f270f8447b006",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "_BLOOM_LQ _DITHERING _USE_FAST_SRGB_LINEAR_CONVERSION",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "5c4a63a91a208620119f73de0b5df82b"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal/CoreBlit",
+                "shaderAssetGUID": "93446b5c5339d4f00b85c159e1159b7c",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "BLIT_DECODE_HDR",
+                "subShaderIndex": 0,
+                "passIndex": 22,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "619ae7d64d6aefa5404e1a3e165a61bf"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Lit",
+                "shaderAssetGUID": "933532a4fcc9baf4fa0491de14d08ed7",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _DETAIL_MULX2 _EMISSION _MAIN_LIGHT_SHADOWS_CASCADE _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP _PARALLAXMAP _REFLECTION_PROBE_ATLAS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SHADOWS_SOFT _SPECGLOSSMAP",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "787287f291cb15cad7ff44ca59fecbb8"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING LOD_FADE_CROSSFADE SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _SURFACE_TYPE_TRANSPARENT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "744a8c6224f426ad0c71f9e3e82b3482"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _EMISSION _MAIN_LIGHT_SHADOWS _RECEIVE_SHADOWS_OFF",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "9e32fc735910975de45b34e1d24a890c"
+            },
+            "second": {
+                "shaderName": "Shader Graphs/ObjectFade",
+                "shaderAssetGUID": "d69d6dbfd53fdbf47a4207040c8b2da6",
+                "shaderAssetLocalIdentifierInFile": 0,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS_CASCADE _REFLECTION_PROBE_ATLAS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SHADOWS_SOFT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "46fa304e4cd090bfd05b4f3e68678a59"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING LOD_FADE_CROSSFADE SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS_CASCADE _NORMALMAP _SHADOWS_SOFT _SPECULAR_COLOR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "b48a2946c1792cc24949ac3240f295be"
+            },
+            "second": {
+                "shaderName": "Shader Graphs/WaterVolume-URP",
+                "shaderAssetGUID": "2cddf2ee6a74aca44af00f5a49bd2cf1",
+                "shaderAssetLocalIdentifierInFile": 0,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _REFLECTION_PROBE_ATLAS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "3bfbf2c8eebd0ca25cad42df16a07467"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _NORMALMAP _SPECULAR_COLOR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "50f3ae03b19a81650b35c12b890cc448"
+            },
+            "second": {
+                "shaderName": "UI/Default",
+                "shaderAssetGUID": "203dea5f7870f4649b7b371a655d12b9",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "UNITY_UI_ALPHACLIP",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "8adb9946faa7754af311a8bf64db171e"
+            },
+            "second": {
+                "shaderName": "Hidden/CubeBlend",
+                "shaderAssetGUID": "0aa77398943994b51b113ae1a61dd159",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "920b9237e51a3c50f1e7e8d3b148b202"
+            },
+            "second": {
+                "shaderName": "UI/Default",
+                "shaderAssetGUID": "203dea5f7870f4649b7b371a655d12b9",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "cfa31dea29302cc3466134f793f6cbd5"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Particles/Unlit",
+                "shaderAssetGUID": "0406db5a14f94604a8c57ccfbc9f3b46",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "FOG_LINEAR _EMISSION _SURFACE_TYPE_TRANSPARENT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "dc7bc0b98ec2e5c8676b4819172a1fc7"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Fur/Multi-Pass Shell/Lit",
+                "shaderAssetGUID": "295ee5a5dfb00aa48a251f09d106dcc0",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "FOG_LINEAR LIGHTMAP_SHADOW_MIXING _ALPHATEST_ON _CLUSTER_LIGHT_LOOP _FUR_SPECULAR _MAIN_LIGHT_SHADOWS_CASCADE _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SHADOWS_SOFT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "e2b33b71ec2fc8cabaa02e9b03a20d4e"
+            },
+            "second": {
+                "shaderName": "Hidden/CubeBlur",
+                "shaderAssetGUID": "6dfd15e95f9494f06acbd6c5490eeef5",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "f49b00dcd36c36c1404d10b304955388"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING LOD_FADE_CROSSFADE SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS_CASCADE _NORMALMAP _SHADOWS_SOFT _SPECULAR_COLOR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "03dc0ac87afc1f853e3ec1d52dba3053"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_SHADOW_MIXING LOD_FADE_CROSSFADE SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _EMISSION _MAIN_LIGHT_SHADOWS _RECEIVE_SHADOWS_OFF",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "1cf44e4f4cb3d8220b603b804960dde1"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _NORMALMAP _SPECULAR_COLOR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "fc5b1eef9bb8eac638937b5e59a4feaf"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING LOD_FADE_CROSSFADE SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _NORMALMAP _SPECULAR_COLOR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "3a0412441be277ff88603eba1545f2ca"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING LOD_FADE_CROSSFADE SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _EMISSION _MAIN_LIGHT_SHADOWS_CASCADE _NORMALMAP _SHADOWS_SOFT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "416cf3c9ef43ffaf98082fe6b453fd99"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Fur/Multi-Pass Shell/Lit",
+                "shaderAssetGUID": "295ee5a5dfb00aa48a251f09d106dcc0",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "FOG_LINEAR _ALPHATEST_ON _CLUSTER_LIGHT_LOOP _FUR_SPECULAR _MAIN_LIGHT_SHADOWS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "69dcf7c60ee40ce761e5bd74fa4a64e6"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING LOD_FADE_CROSSFADE SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "92e4022112c031bb52f16d5ee8941fdf"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal Render Pipeline/CopyDepth",
+                "shaderAssetGUID": "d6dae50ee9e1bfa4db75f19f99355220",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "c9b49fd8013e830937911ff3c267802f"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal Render Pipeline/BokehDepthOfField",
+                "shaderAssetGUID": "2aed67ad60045d54ba3a00c91e2d2631",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "_USE_FAST_SRGB_LINEAR_CONVERSION",
+                "subShaderIndex": 0,
+                "passIndex": 2,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "c3acd69621ed0b5b604e2be32caa4477"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_SHADOW_MIXING LOD_FADE_CROSSFADE SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _EMISSION _MAIN_LIGHT_SHADOWS_CASCADE _RECEIVE_SHADOWS_OFF _SHADOWS_SOFT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "f1d4ad93e2a625cda780dba28bbfbaf1"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal Render Pipeline/LutBuilderLdr",
+                "shaderAssetGUID": "65df88701913c224d95fc554db28381a",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "61153776b62e6f5393049618b5862a15"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "9d4d26ea0f646daf1168424cfcab7256"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Lit",
+                "shaderAssetGUID": "933532a4fcc9baf4fa0491de14d08ed7",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _DETAIL_MULX2 _EMISSION _MAIN_LIGHT_SHADOWS _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP _PARALLAXMAP _REFLECTION_PROBE_ATLAS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SPECGLOSSMAP",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "abddec46e9cfd774dd3ebea3af73d718"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _EMISSION _MAIN_LIGHT_SHADOWS _NORMALMAP",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "bf65206694ad5bf0ceec828842237e6a"
+            },
+            "second": {
+                "shaderName": "Shader Graphs/WaterShader",
+                "shaderAssetGUID": "dd97de70edf8a4141bee758a2efe7ff8",
+                "shaderAssetLocalIdentifierInFile": 0,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _REFLECTION_PROBE_ATLAS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "c27d9f2a534f9cda31adc2f3da34a8ab"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LOD_FADE_CROSSFADE USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _NORMALMAP _SPECULAR_COLOR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "d5ad51d25b8f2c2ecefb3260c4f8a237"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS_CASCADE _SHADOWS_SOFT _SURFACE_TYPE_TRANSPARENT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "e91561ce158a9588e4493878cb09e7e1"
+            },
+            "second": {
+                "shaderName": "Hidden/BlitCopy",
+                "shaderAssetGUID": "7f98de55a7e99dc4ab9469edbd3040bc",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "f6e54c1bb1b1d87263269a0018bed3ab"
+            },
+            "second": {
+                "shaderName": "Skybox/Procedural",
+                "shaderAssetGUID": "06b4f5c51b2b24d5d956d4841451489d",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "_SUNDISK_NONE",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "ade5e8d7a05717fd2230005a364e7d6b"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING LOD_FADE_CROSSFADE SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _SPECULAR_COLOR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "10de726a50a26fbbe9f8d87741d1e671"
+            },
+            "second": {
+                "shaderName": "Legacy Shaders/Particles/Additive",
+                "shaderAssetGUID": "c3cb607c8d119e4b300074088c7b2b39",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "FOG_LINEAR",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "202617244125673cfb0ebab8eb912c48"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Lit",
+                "shaderAssetGUID": "933532a4fcc9baf4fa0491de14d08ed7",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING LOD_FADE_CROSSFADE SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _DETAIL_MULX2 _EMISSION _MAIN_LIGHT_SHADOWS _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP _PARALLAXMAP _REFLECTION_PROBE_ATLAS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SPECGLOSSMAP",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "a12630a4b2facdf4457c4dd90b1ba832"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Fur/Multi-Pass Shell/Lit",
+                "shaderAssetGUID": "295ee5a5dfb00aa48a251f09d106dcc0",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "FOG_LINEAR LIGHTMAP_SHADOW_MIXING _ALPHATEST_ON _CLUSTER_LIGHT_LOOP _FUR_SPECULAR _MAIN_LIGHT_SHADOWS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "c59ed7119894b9f932141beb4a48924c"
+            },
+            "second": {
+                "shaderName": "TextMeshPro/Mobile/Distance Field",
+                "shaderAssetGUID": "fe393ace9b354375a9cb14cdbbc28be4",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "UNDERLAY_ON",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "c6be5b6d540caa80a07bebca451b8584"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal Render Pipeline/BokehDepthOfField",
+                "shaderAssetGUID": "2aed67ad60045d54ba3a00c91e2d2631",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "_USE_FAST_SRGB_LINEAR_CONVERSION",
+                "subShaderIndex": 0,
+                "passIndex": 4,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "e50681258531e1a169050b1ce2c8e8b9"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal Render Pipeline/ScreenSpaceAmbientOcclusion",
+                "shaderAssetGUID": "0849e84e3d62649e8882e9d6f056a017",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "_INTERLEAVED_GRADIENT _SAMPLE_COUNT_LOW _SOURCE_DEPTH_LOW",
+                "subShaderIndex": 0,
+                "passIndex": 9,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "cd3ec7b62309a94f4029c0c8dd67eec7"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal Render Pipeline/Bloom",
+                "shaderAssetGUID": "5f1864addb451f54bae8c86d230f736e",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "06ef068039996924c39b945df07e50d9"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "e30e6efce8cbcf52dc9a48386410ea33"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal Render Pipeline/Bloom",
+                "shaderAssetGUID": "5f1864addb451f54bae8c86d230f736e",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "",
+                "subShaderIndex": 0,
+                "passIndex": 2,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "c89622971ba1ade7652b6c8f61dbbbe6"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Simple Lit",
+                "shaderAssetGUID": "8d2bb70cbf9db8d4da26e15b26e74248",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _EMISSION _MAIN_LIGHT_SHADOWS_CASCADE _NORMALMAP _SHADOWS_SOFT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "48679998db3b9692a2bd40f535553a5f"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal Render Pipeline/Bloom",
+                "shaderAssetGUID": "5f1864addb451f54bae8c86d230f736e",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "",
+                "subShaderIndex": 0,
+                "passIndex": 3,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "56b773227f29e18fea3bfaf79ef715b5"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal Render Pipeline/ScreenSpaceAmbientOcclusion",
+                "shaderAssetGUID": "0849e84e3d62649e8882e9d6f056a017",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "_INTERLEAVED_GRADIENT _SAMPLE_COUNT_LOW _SOURCE_DEPTH_LOW",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "5907d4725be6e6f4a34a6083cd7a3cae"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal Render Pipeline/BokehDepthOfField",
+                "shaderAssetGUID": "2aed67ad60045d54ba3a00c91e2d2631",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "_USE_FAST_SRGB_LINEAR_CONVERSION",
+                "subShaderIndex": 0,
+                "passIndex": 1,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "1b8f4fb1377a10432653bc136c205d1b"
+            },
+            "second": {
+                "shaderName": "Shader Graphs/ObjectFade",
+                "shaderAssetGUID": "d69d6dbfd53fdbf47a4207040c8b2da6",
+                "shaderAssetLocalIdentifierInFile": 0,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS _REFLECTION_PROBE_ATLAS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "aeefa4d7bfa85d68d34f88bd720eac8f"
+            },
+            "second": {
+                "shaderName": "Shader Graphs/WaterShader",
+                "shaderAssetGUID": "dd97de70edf8a4141bee758a2efe7ff8",
+                "shaderAssetLocalIdentifierInFile": 0,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _MAIN_LIGHT_SHADOWS_CASCADE _REFLECTION_PROBE_ATLAS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SHADOWS_SOFT",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "a69f323e1535a36b20aac8030d99e882"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Lit",
+                "shaderAssetGUID": "933532a4fcc9baf4fa0491de14d08ed7",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "DOTS_INSTANCING_ON FOG_LINEAR LIGHTMAP_ON LIGHTMAP_SHADOW_MIXING LOD_FADE_CROSSFADE SHADOWS_SHADOWMASK USE_LEGACY_LIGHTMAPS _CLUSTER_LIGHT_LOOP _DETAIL_MULX2 _EMISSION _MAIN_LIGHT_SHADOWS_CASCADE _METALLICSPECGLOSSMAP _NORMALMAP _OCCLUSIONMAP _PARALLAXMAP _REFLECTION_PROBE_ATLAS _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION _SHADOWS_SOFT _SPECGLOSSMAP",
+                "subShaderIndex": 0,
+                "passIndex": 0,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "c02f31ef2b6a6ec55263e8645038cd47"
+            },
+            "second": {
+                "shaderName": "Universal Render Pipeline/Fur/Multi-Pass Shell/Lit",
+                "shaderAssetGUID": "295ee5a5dfb00aa48a251f09d106dcc0",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "FOG_LINEAR LIGHTMAP_SHADOW_MIXING _ALPHATEST_ON _CLUSTER_LIGHT_LOOP _FUR_SPECULAR _REFLECTION_PROBE_BLENDING _REFLECTION_PROBE_BOX_PROJECTION",
+                "subShaderIndex": 0,
+                "passIndex": 3,
+                "graphicsStateInfoSet": []
+            }
+        },
+        {
+            "first": {
+                "serializedVersion": "2",
+                "Hash": "e80faa166a7a0ad7d7411d46655da915"
+            },
+            "second": {
+                "shaderName": "Hidden/Universal Render Pipeline/BokehDepthOfField",
+                "shaderAssetGUID": "2aed67ad60045d54ba3a00c91e2d2631",
+                "shaderAssetLocalIdentifierInFile": 4800000,
+                "keywordNames": "_USE_FAST_SRGB_LINEAR_CONVERSION",
+                "subShaderIndex": 0,
+                "passIndex": 3,
+                "graphicsStateInfoSet": []
+            }
+        }
+    ],
+    "m_VertexLayoutInfoMap": [],
+    "m_RenderPassInfoMap": [],
+    "m_RenderStateMap": []
+}

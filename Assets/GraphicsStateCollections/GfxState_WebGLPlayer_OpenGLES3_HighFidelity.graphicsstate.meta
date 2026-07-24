@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 91c9fb85c0863764088675145de495b1
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 12391, guid: 0000000000000000e000000000000000, type: 0}
+  runtimePlatform: 17
+  graphicsDeviceType: 11
+  version: 0
+  qualityLevelName: High Fidelity
+  shaderVariantCount: 64
+  graphicsStateCount: 0

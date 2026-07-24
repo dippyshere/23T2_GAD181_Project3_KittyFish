@@ -41,7 +41,6 @@ Properties
     [Space(10)][Toggle(_FUR_SPECULAR)] _FurSpecular("Marschner Specular", Float) = 1
     // Not used in Multi-Pass Fur.
     [HideInInspector][Toggle(_FUR_SPECULAR_DEFERRED)] _FurSpecularDeferred("(Slow) Support Deferred Path", Float) = 0.0
-    [Toggle] _ConsiderShadow("Consider Shadow", Float) = 0.0
     _FurSmoothness("Fur Smoothness", Range(0.0, 1.0)) = 0.45
     _Backlit("Backlit", Range(0.0, 1.0)) = 0.25
     _Area("Lit Area", Range(0.01, 1.0)) = 0.1
@@ -126,8 +125,8 @@ SubShader
         #pragma multi_compile_fragment _ _WRITE_RENDERING_LAYERS
 #endif
 
-        #pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
-        #pragma multi_compile _ _ADDITIONAL_LIGHT_SHADOWS
+        //#pragma multi_compile _ _ADDITIONAL_LIGHTS_VERTEX _ADDITIONAL_LIGHTS
+        //#pragma multi_compile _ _ADDITIONAL_LIGHT_SHADOWS
         #pragma multi_compile _ _SHADOWS_SOFT
         #pragma multi_compile _ _MIXED_LIGHTING_SUBTRACTIVE
         #pragma multi_compile_fragment _ _SCREEN_SPACE_OCCLUSION
@@ -135,7 +134,7 @@ SubShader
 
         #pragma shader_feature_fragment _ _FUR_SPECULAR
         #pragma shader_feature_fragment _ _FUR_RIM_LIGHTING
-        #pragma shader_feature_fragment _ _MATERIAL_TYPE_PHYSICAL_HAIR
+        //#pragma shader_feature_fragment _ _MATERIAL_TYPE_PHYSICAL_HAIR
 
         // Unity Keywords
         #pragma multi_compile _ DIRLIGHTMAP_COMBINED
@@ -143,11 +142,11 @@ SubShader
         #pragma multi_compile _ DYNAMICLIGHTMAP_ON
         #pragma multi_compile_fog
         #pragma multi_compile_instancing
-        #pragma multi_compile _ DOTS_INSTANCING_ON
+        //#pragma multi_compile _ DOTS_INSTANCING_ON
         #pragma multi_compile_fragment _ DEBUG_DISPLAY
 
         #pragma exclude_renderers gles
-        //#pragma target 4.5
+        //#pragma target 3.5
 
         #pragma vertex vert
         #pragma fragment frag

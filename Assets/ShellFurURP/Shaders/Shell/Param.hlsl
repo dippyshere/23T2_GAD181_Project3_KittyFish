@@ -23,7 +23,6 @@ half _GroomingIntensity;
 
 half _BentType;
 
-half _ConsiderShadow;
 half _FurSmoothness;
 half _Backlit;
 half _Area;
